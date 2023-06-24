@@ -1,21 +1,27 @@
 using UnityEngine;
+using System;
 
 public class PlayerPhysics : MonoBehaviour
 {
+    public event Action OnWarpPlayer;
+
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
-    private SpriteRenderer _playerSpriteRenderer;
 
+    private Vector2 _inputs;
 
-    private Vector2 inputs;
+    [SerializeField] private float _speed;
 
-    [SerializeField] private float speed;
+    [SerializeField] private Transform _rayPos;
+    [SerializeField] private LayerMask _doorLayer;
+
+    public bool _isDoor;
+    
 
     private void Initialization()
     {
         _playerRb = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
-        _playerSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -26,27 +32,37 @@ public class PlayerPhysics : MonoBehaviour
     void Update()
     {
         Movement();
-
         UpdateAnimator();
+
+        Debug.DrawRay(_rayPos.position, _inputs * 0.2f, Color.green);
+
+        RaycastHit2D ray = Physics2D.Raycast(_rayPos.position, _inputs, 0.2f, _doorLayer);
+
+        if (ray && !_isDoor)
+        {
+            _isDoor = true;
+            OnWarpPlayer?.Invoke();
+            print("EAW");
+        }
     }
 
     private void Movement()
     {
-        inputs.x = Input.GetAxisRaw("Horizontal");
-        inputs.y = Input.GetAxisRaw("Vertical");
+        _inputs.x = Input.GetAxisRaw("Horizontal");
+        _inputs.y = Input.GetAxisRaw("Vertical");
 
-        _playerRb.velocity = inputs * speed;
+        _playerRb.velocity = _inputs * _speed;
 
         Flip();
     }
 
     private void Flip()
     {
-        if (inputs.x < 0)
+        if (_inputs.x < 0)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
         }
-        else if(inputs.x > 0)
+        else if(_inputs.x > 0)
         {
             transform.eulerAngles = Vector3.zero;
         }
@@ -54,7 +70,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private bool Walking()
     {
-        if(inputs.x != 0 || inputs.y != 0)
+        if(_inputs.x != 0 || _inputs.y != 0)
         {
             return true;
         }
@@ -64,12 +80,12 @@ public class PlayerPhysics : MonoBehaviour
 
     private void WalkingUp()
     {
-        if (inputs.y > 0)
+        if (_inputs.y > 0)
         {
             _playerAnimator.SetLayerWeight(1, 1);
             _playerAnimator.SetLayerWeight(2, 0);
         }
-        else if(inputs.y < 0)
+        else if(_inputs.y < 0)
         {
             _playerAnimator.SetLayerWeight(1, 0);
             _playerAnimator.SetLayerWeight(2, 0);
@@ -78,7 +94,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private void WalkSideways()
     {
-        if (inputs.y == 0 && inputs.x != 0)
+        if (_inputs.y == 0 && _inputs.x != 0)
         {
             _playerAnimator.SetLayerWeight(2, 1);
         }
