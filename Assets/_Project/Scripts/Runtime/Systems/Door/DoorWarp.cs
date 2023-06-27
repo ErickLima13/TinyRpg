@@ -1,26 +1,26 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class DoorWarp : MonoBehaviour
 {
-    [SerializeField] private Transform exit;
+    [SerializeField] private Transform exitPos;
 
     [SerializeField] private PlayerPhysics player;
 
-    private void Start()
+    private void OnEnable()
     {
-        player = FindObjectOfType<PlayerPhysics>();
         player.OnWarpPlayer += WarpPlayer;
-    }
-
-    private void WarpPlayer()
-    {
-        player.transform.position = exit.position;
     }
 
     private void OnDisable()
     {
         player.OnWarpPlayer -= WarpPlayer;
     }
+
+    private void WarpPlayer()
+    {
+        print("chamei " + name);
+        player.transform.position = exitPos.position;
+        player._isDoor = false;
+    }
+
+
 }

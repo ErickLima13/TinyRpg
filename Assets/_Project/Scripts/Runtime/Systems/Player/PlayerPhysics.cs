@@ -34,7 +34,7 @@ public class PlayerPhysics : MonoBehaviour
         Movement();
         UpdateAnimator();
 
-        Debug.DrawRay(_rayPos.position, _inputs * 0.2f, Color.green);
+        Debug.DrawRay(_rayPos.position, _inputs * 0.15f, Color.green);
 
         RaycastHit2D ray = Physics2D.Raycast(_rayPos.position, _inputs, 0.2f, _doorLayer);
 
@@ -42,7 +42,7 @@ public class PlayerPhysics : MonoBehaviour
         {
             _isDoor = true;
             OnWarpPlayer?.Invoke();
-            print("EAW");
+            print(ray.transform.gameObject.name);
         }
     }
 

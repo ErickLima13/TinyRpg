@@ -1,5 +1,4 @@
 using Cinemachine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +6,23 @@ public class VirtualCamera : MonoBehaviour
 {
     private CinemachineVirtualCamera virtualCamera;
 
-    private PlayerPhysics player;
+    [SerializeField] private PlayerPhysics player;
 
     [SerializeField] private List<Transform> centerRooms;
 
+    private void OnEnable()
+    {
+        player.OnWarpPlayer += MoveCam;
+    }
+
+    private void OnDisable()
+    {
+        player.OnWarpPlayer -= MoveCam;
+    }
+
     private void Start()
     {
-        virtualCamera= GetComponent<CinemachineVirtualCamera>();
-        player = FindObjectOfType<PlayerPhysics>();
-
-        player.OnWarpPlayer += MoveCam;
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
     private void MoveCam()
@@ -25,8 +31,5 @@ public class VirtualCamera : MonoBehaviour
         player._isDoor = false;
     }
 
-    private void OnDisable()
-    {
-        player.OnWarpPlayer -= MoveCam;
-    }
+
 }
