@@ -3,8 +3,6 @@ using System;
 
 public class PlayerPhysics : MonoBehaviour
 {
-    public event Action OnWarpPlayer;
-
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
 
@@ -17,7 +15,6 @@ public class PlayerPhysics : MonoBehaviour
 
     public bool _isDoor;
     
-
     private void Initialization()
     {
         _playerRb = GetComponent<Rigidbody2D>();
@@ -33,17 +30,6 @@ public class PlayerPhysics : MonoBehaviour
     {
         Movement();
         UpdateAnimator();
-
-        Debug.DrawRay(_rayPos.position, _inputs * 0.15f, Color.green);
-
-        RaycastHit2D ray = Physics2D.Raycast(_rayPos.position, _inputs, 0.2f, _doorLayer);
-
-        if (ray && !_isDoor)
-        {
-            _isDoor = true;
-            OnWarpPlayer?.Invoke();
-            print(ray.transform.gameObject.name);
-        }
     }
 
     private void Movement()
@@ -114,7 +100,6 @@ public class PlayerPhysics : MonoBehaviour
         {
             _playerAnimator.SetTrigger("Attack");
         }
-       
     }
 
 }
