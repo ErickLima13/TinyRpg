@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 public class CenterRoom : MonoBehaviour
 {
-    public int indexCenter;
-
-    [SerializeField] private VirtualCamera _virtualCam;
+    private VirtualCamera _virtualCam;
+   
+    [SerializeField] private int indexCenter;
 
     private void Start()
     {
