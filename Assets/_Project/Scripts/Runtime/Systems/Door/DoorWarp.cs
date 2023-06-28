@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -10,7 +9,8 @@ public class DoorWarp : MonoBehaviour
 
     private void WarpPlayer()
     {
-        StartCoroutine(WarpTime());
+        player.transform.position = exitPos.position;
+        player._isDoor = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,8 +25,6 @@ public class DoorWarp : MonoBehaviour
     private IEnumerator WarpTime()
     {
         yield return new WaitForSeconds(0.5f);
-        player.transform.position = exitPos.position;
-        player._isDoor = false;
-        
+
     }
 }

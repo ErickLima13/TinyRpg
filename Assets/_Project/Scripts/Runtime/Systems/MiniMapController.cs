@@ -7,8 +7,12 @@ public class MiniMapController : MonoBehaviour
 
     [SerializeField] private GameObject[] roomsObj;
 
+    private int _idCurrentRoom;
+
     private void Start()
     {
+        _idCurrentRoom = 0;
+
         foreach (GameObject r in rooms)
         {
             r.SetActive(false);
@@ -19,20 +23,17 @@ public class MiniMapController : MonoBehaviour
             ro.SetActive(false);
         }
 
-        rooms[0].SetActive(true);
+        rooms[_idCurrentRoom].SetActive(true);
         roomsObj[0].SetActive(true);
     }
 
     public void UpdateMap(int value)
     {
-        foreach (GameObject ro in roomsObj)
-        {
-            ro.SetActive(false);
-        }
+        roomsObj[_idCurrentRoom].SetActive(false);
+        roomsObj[value].SetActive(true);
+        _idCurrentRoom = value;
 
         rooms[value].SetActive(true);
-        roomsObj[value].SetActive(true);
-
         Vector2 newPos = new(rooms[value].transform.localPosition.x, rooms[value].transform.localPosition.y);
         roomPos.localPosition = newPos * -1;
     }
