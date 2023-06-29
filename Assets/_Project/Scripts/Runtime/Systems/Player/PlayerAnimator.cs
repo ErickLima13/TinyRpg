@@ -66,11 +66,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1") && !_playerPhysics._isAttack)
+        if (Input.GetButtonDown("Fire1"))
         {
             _animator.SetTrigger("Attack");
             _playerPhysics._speed = 0;
-            _playerPhysics._isAttack = true;
         }
     }
 }

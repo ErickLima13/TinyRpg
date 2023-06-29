@@ -17,7 +17,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void FireBallAttack()
     {
-        StartCoroutine(AttackCoroutine());
+        GameObject temp = Instantiate(fireBallPrefabs[idPrefab], transform.position, Quaternion.identity);
+        Destroy(temp, 0.5f);
     }
 
     public void EndAttack()
@@ -25,20 +26,9 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(EndAttackCoroutine());
     }
 
-    private IEnumerator AttackCoroutine()
-    {
-        GameObject temp = Instantiate(fireBallPrefabs[idPrefab], transform.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(0.5f);
-
-        Destroy(temp, 0.5f);
-    }
-
     private IEnumerator EndAttackCoroutine()
     {
         yield return new WaitForSeconds(0.3f);
-
-        playerPhysics._isAttack = false;
         playerPhysics._speed = 0.7f;
     }
 }

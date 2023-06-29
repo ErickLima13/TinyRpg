@@ -1065,7 +1065,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _isDoor: 0
-  _isAttack: 0
 --- !u!114 &172932575
 MonoBehaviour:
   m_ObjectHideFlags: 0

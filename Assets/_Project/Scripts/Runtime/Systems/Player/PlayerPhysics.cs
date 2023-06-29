@@ -14,7 +14,6 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private LayerMask _doorLayer;
 
     public bool _isDoor;
-    public bool _isAttack;
 
     private void Initialization()
     {
