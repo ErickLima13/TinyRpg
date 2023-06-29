@@ -61,7 +61,7 @@ public class PlayerAnimator : MonoBehaviour
         WalkingUp();
         WalkSideways();
         Attack();
-      
+
     }
 
     private void Attack()

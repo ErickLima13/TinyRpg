@@ -4,7 +4,7 @@ using UnityEngine;
 public class CenterRoom : MonoBehaviour
 {
     private VirtualCamera _virtualCam;
-   
+
     [SerializeField] private int indexCenter;
 
     private void Start()

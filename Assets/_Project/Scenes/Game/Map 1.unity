@@ -910,7 +910,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &172932570
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5928,6 +5928,7 @@ GameObject:
   - component: {fileID: 1181960274}
   - component: {fileID: 1181960276}
   - component: {fileID: 1181960277}
+  - component: {fileID: 1181960278}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Untagged
@@ -5964,10 +5965,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0058190525, y: -0.054200687}
+  m_Offset: {x: 0.0058190525, y: -0.0061408244}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5978,7 +5979,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13285178, y: 0.13486151}
+  m_Size: {x: 0.13285178, y: 0.23098123}
   m_EdgeRadius: 0
 --- !u!4 &1181960275
 Transform:
@@ -6022,7 +6023,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1181960277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6036,7 +6037,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPrefab: {fileID: 5813268691865864600, guid: 1384b760c18cc4843bea7924c1b165ea, type: 3}
-  maxLife: 8
+  maxLife: 2
+--- !u!114 &1181960278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5687ebc8d7e6624db76a4a8a73bb82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
+  speed: 0.3
+  waitTime: 3
+  moveTime: 5
 --- !u!1 &1213009400
 GameObject:
   m_ObjectHideFlags: 0
