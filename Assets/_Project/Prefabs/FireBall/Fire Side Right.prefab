@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5771627800687612281}
   - component: {fileID: 4716765752423163397}
   - component: {fileID: 3263458119798410411}
+  - component: {fileID: 7272058772355218510}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -174,3 +175,16 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.003989272}
   m_Size: {x: 0.07, y: 0.16968144}
   m_Direction: 0
+--- !u!114 &7272058772355218510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812396027996372051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59319c5d7b92bdb438b8b22f5c6a2eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageBall: 2

@@ -5928,6 +5928,7 @@ GameObject:
   - component: {fileID: 1181960275}
   - component: {fileID: 1181960274}
   - component: {fileID: 1181960276}
+  - component: {fileID: 1181960277}
   m_Layer: 0
   m_Name: Skull
   m_TagString: Untagged
@@ -6023,6 +6024,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1181960277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181960273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05dff88b4120fd84eb53d189b8a7ed29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 5813268691865864600, guid: 1384b760c18cc4843bea7924c1b165ea, type: 3}
+  maxLife: 8
 --- !u!1 &1213009400
 GameObject:
   m_ObjectHideFlags: 0
@@ -6386,7 +6401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1245871633
 MonoBehaviour:
   m_ObjectHideFlags: 0

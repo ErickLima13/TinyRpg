@@ -8,14 +8,12 @@ public class Status : MonoBehaviour
 
     public void HealthChange(int value)
     {
-        GameObject temp = Instantiate(hitPrefab, transform.position, Quaternion.identity);
-
-        Destroy(temp, 0.5f);
-
         maxLife -= value;
 
         if (maxLife <= 0)
         {
+            GameObject temp = Instantiate(hitPrefab, transform.position, Quaternion.identity);
+            Destroy(temp, 0.5f);
             Destroy(gameObject);
         }
     }
