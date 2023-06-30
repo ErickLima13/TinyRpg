@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -13,22 +12,21 @@ public class PlayerAttack : MonoBehaviour
     {
         idPrefab = 1;
         playerPhysics = GetComponent<PlayerPhysics>();
+
+        foreach (GameObject fireBall in fireBallPrefabs)
+        {
+            fireBall.SetActive(false);
+        }
     }
 
     public void FireBallAttack()
     {
-        GameObject temp = Instantiate(fireBallPrefabs[idPrefab], transform.position, Quaternion.identity);
-        Destroy(temp, 0.5f);
+        fireBallPrefabs[idPrefab].SetActive(true);
     }
 
     public void EndAttack()
     {
-        StartCoroutine(EndAttackCoroutine());
-    }
-
-    private IEnumerator EndAttackCoroutine()
-    {
-        yield return new WaitForSeconds(0.3f);
+        fireBallPrefabs[idPrefab].SetActive(false);
         playerPhysics._speed = 0.7f;
     }
 }

@@ -50,7 +50,7 @@ public class PlayerPhysics : MonoBehaviour
         }
         else if (_inputs.x > 0)
         {
-            _playerAttack.idPrefab = 3;
+            _playerAttack.idPrefab = 2;
             transform.eulerAngles = Vector3.zero;
         }
     }

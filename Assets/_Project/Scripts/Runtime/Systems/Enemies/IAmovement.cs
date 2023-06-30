@@ -53,7 +53,7 @@ public class IAmovement : MonoBehaviour
 
         if (player != null)
         {
-            _viewPlayer = true;  
+            _viewPlayer = true;
             _direction = Vector3.Normalize(player.transform.position - transform.position);
         }
         else
