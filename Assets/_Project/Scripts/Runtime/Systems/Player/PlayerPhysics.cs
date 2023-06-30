@@ -48,12 +48,12 @@ public class PlayerPhysics : MonoBehaviour
         if (_inputs.x < 0)
         {
             _playerAttack.idPrefab = 2;
-            transform.eulerAngles = new Vector3(0, 180, 0);
+            transform.localScale = new(-1, 1, 1);
         }
         else if (_inputs.x > 0)
         {
             _playerAttack.idPrefab = 2;
-            transform.eulerAngles = Vector3.zero;
+            transform.localScale = Vector3.one;
         }
     }
 }

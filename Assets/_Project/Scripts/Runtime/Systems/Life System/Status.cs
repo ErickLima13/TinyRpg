@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Unity.Plastic.Newtonsoft.Json.Serialization;
+using UnityEngine;
 
 public class Status : MonoBehaviour
 {
-    public event Action OnEnemieDie;
+    public event Action OnDie;
 
     [SerializeField] private GameObject hitPrefab;
 
@@ -16,9 +17,8 @@ public class Status : MonoBehaviour
 
         if (maxLife <= 0)
         {
-            OnEnemieDie?.Invoke();
+            OnDie?.Invoke();
             Destroy(gameObject, 0.1f);
-
         }
     }
 }

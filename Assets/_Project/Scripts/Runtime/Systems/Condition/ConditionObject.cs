@@ -10,7 +10,7 @@ public class ConditionObject : MonoBehaviour
 
     private void OnDisable()
     {
-        status.OnEnemieDie -= EnemieDie;
+        status.OnDie -= EnemieDie;
     }
 
     private void Start()
@@ -18,7 +18,7 @@ public class ConditionObject : MonoBehaviour
         status = GetComponent<Status>();
         controller.AddObject(gameObject);
 
-        status.OnEnemieDie += EnemieDie;
+        status.OnDie += EnemieDie;
     }
 
     private void EnemieDie()

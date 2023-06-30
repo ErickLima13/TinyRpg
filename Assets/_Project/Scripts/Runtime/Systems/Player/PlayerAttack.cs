@@ -13,10 +13,7 @@ public class PlayerAttack : MonoBehaviour
         idPrefab = 1;
         playerPhysics = GetComponent<PlayerPhysics>();
 
-        foreach (GameObject fireBall in fireBallPrefabs)
-        {
-            fireBall.SetActive(false);
-        }
+        DisableAllPrefabs();
     }
 
     public void FireBallAttack()
@@ -26,7 +23,15 @@ public class PlayerAttack : MonoBehaviour
 
     public void EndAttack()
     {
-        fireBallPrefabs[idPrefab].SetActive(false);
+        DisableAllPrefabs();
         playerPhysics._speed = 0.7f;
+    }
+
+    private void DisableAllPrefabs()
+    {
+        foreach (GameObject fireBall in fireBallPrefabs)
+        {
+            fireBall.SetActive(false);
+        }
     }
 }
