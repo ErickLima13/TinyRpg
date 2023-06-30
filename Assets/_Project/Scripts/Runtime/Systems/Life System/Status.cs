@@ -2,6 +2,8 @@
 
 public class Status : MonoBehaviour
 {
+    public event Action OnEnemieDie;
+
     [SerializeField] private GameObject hitPrefab;
 
     public int maxLife;
@@ -14,7 +16,9 @@ public class Status : MonoBehaviour
 
         if (maxLife <= 0)
         {
-            Destroy(gameObject);
+            OnEnemieDie?.Invoke();
+            Destroy(gameObject, 0.1f);
+
         }
     }
 }

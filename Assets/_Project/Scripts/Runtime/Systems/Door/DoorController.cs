@@ -7,6 +7,7 @@ public class DoorController : MonoBehaviour
     [SerializeField] private Sprite[] spritesLocked;
     [SerializeField] private Sprite[] spritesOpened;
 
+    public bool conditionDoor;
     public bool needKey;
 
     private void Start()
@@ -18,7 +19,7 @@ public class DoorController : MonoBehaviour
     {
         for (int i = 0; i < doorsWarp.Length; i++)
         {
-            if (needKey)
+            if (needKey || conditionDoor)
             {
                 doorsWarp[i].GetComponent<SpriteRenderer>().sprite = spritesLocked[i];
             }

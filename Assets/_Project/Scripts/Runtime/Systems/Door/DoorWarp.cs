@@ -24,6 +24,11 @@ public class DoorWarp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (controller.conditionDoor)
+        {
+            return;
+        }
+
         if (collision.TryGetComponent(out PlayerPhysics playerCol))
         {
             player = playerCol;
@@ -36,9 +41,10 @@ public class DoorWarp : MonoBehaviour
     {
         if (player.keys > 0 && controller.needKey)
         {
-            controller.needKey = false;
-            controller.UpddateDoor();
+            controller.needKey = false;   
             player.keys--;
         }
+
+        controller.UpddateDoor();
     }
 }
