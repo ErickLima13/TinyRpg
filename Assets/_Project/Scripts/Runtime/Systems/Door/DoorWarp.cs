@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class DoorWarp : MonoBehaviour
@@ -7,10 +6,20 @@ public class DoorWarp : MonoBehaviour
 
     [SerializeField] private PlayerPhysics player;
 
+    private DoorController controller;
+
+    private void Start()
+    {
+        controller = GetComponentInParent<DoorController>();
+    }
+
     private void WarpPlayer()
     {
-        player.transform.position = exitPos.position;
-        player._isDoor = false;
+        if (!controller.needKey)
+        {
+            player.transform.position = exitPos.position;
+            player._isDoor = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,13 +27,18 @@ public class DoorWarp : MonoBehaviour
         if (collision.TryGetComponent(out PlayerPhysics playerCol))
         {
             player = playerCol;
+            CheckPlayerHasKey();
             WarpPlayer();
         }
     }
 
-    private IEnumerator WarpTime()
+    private void CheckPlayerHasKey()
     {
-        yield return new WaitForSeconds(0.5f);
-
+        if (player.keys > 0 && controller.needKey)
+        {
+            controller.needKey = false;
+            controller.UpddateDoor();
+            player.keys--;
+        }
     }
 }

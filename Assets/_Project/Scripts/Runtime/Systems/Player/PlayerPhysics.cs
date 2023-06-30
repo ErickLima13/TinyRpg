@@ -15,6 +15,8 @@ public class PlayerPhysics : MonoBehaviour
 
     public bool _isDoor;
 
+    public int keys;
+
     private void Initialization()
     {
         _playerRb = GetComponent<Rigidbody2D>();
