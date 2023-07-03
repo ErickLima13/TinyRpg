@@ -13,21 +13,37 @@ public class ShadowController : MonoBehaviour
     public float minScale;
     public float maxScale;
 
-    private void Start()
+    private void OnEnable()
     {
-        lightSources = FindObjectsOfType<LightSource>();
-
-        for (int i = 0; i < lightSources.Length; i++)
-        {
-            lightTargets.Add(lightSources[i].transform);
-            GameObject temp = Instantiate(shadowPrefab, shadowPos.position, transform.localRotation, transform);
-            shadowTargets.Add(temp.transform);
-        }
+        UpdateListLights();
     }
 
     private void LateUpdate()
     {
         UpdateShadowPos();
+    }
+
+    public void UpdateListLights()
+    {
+        if(lightSources.Length > 0)
+        {
+            foreach(Transform t in shadowTargets)
+            {
+                Destroy(t.gameObject);
+            }
+
+            shadowTargets.Clear();
+            lightTargets.Clear();
+        }
+
+        lightSources = FindObjectsOfType<LightSource>();
+
+        for (int i = 0; i < lightSources.Length; i++)
+        {
+            lightTargets.Add(lightSources[i].transform);
+            GameObject temp = Instantiate(shadowPrefab, shadowPos.position, transform.localRotation, shadowPos);
+            shadowTargets.Add(temp.transform);
+        }
     }
 
     private void UpdateShadowPos()
