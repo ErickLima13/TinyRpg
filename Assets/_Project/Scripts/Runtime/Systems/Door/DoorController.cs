@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
     [SerializeField] private GameObject[] doorsWarp;
+
+    [SerializeField] private List<SpriteRenderer> spritesDoors;
 
     [SerializeField] private Sprite[] spritesLocked;
     [SerializeField] private Sprite[] spritesOpened;
@@ -10,8 +13,15 @@ public class DoorController : MonoBehaviour
     public bool conditionDoor;
     public bool needKey;
 
+    public ItemData item;
+
     private void Start()
     {
+        foreach (var door in doorsWarp)
+        {
+            spritesDoors.Add(door.GetComponent<SpriteRenderer>());
+        }
+
         UpddateDoor();
     }
 
@@ -21,11 +31,11 @@ public class DoorController : MonoBehaviour
         {
             if (needKey || conditionDoor)
             {
-                doorsWarp[i].GetComponent<SpriteRenderer>().sprite = spritesLocked[i];
+                spritesDoors[i].sprite = spritesLocked[i];
             }
             else
             {
-                doorsWarp[i].GetComponent<SpriteRenderer>().sprite = spritesOpened[i];
+                spritesDoors[i].sprite = spritesOpened[i];
             }
         }
     }

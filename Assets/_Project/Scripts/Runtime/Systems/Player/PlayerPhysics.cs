@@ -13,8 +13,6 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private Transform _rayPos;
     [SerializeField] private LayerMask _doorLayer;
 
-    public bool _isDoor;
-
     public int keys;
 
     private void Initialization()

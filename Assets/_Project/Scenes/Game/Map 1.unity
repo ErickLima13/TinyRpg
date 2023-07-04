@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_AmbientSkyColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -1248,7 +1248,6 @@ MonoBehaviour:
   _doorLayer:
     serializedVersion: 2
     m_Bits: 8
-  _isDoor: 0
   keys: 2
 --- !u!114 &172932575
 MonoBehaviour:
@@ -11195,12 +11194,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4696552799440052774, guid: 1b3fafb03b0e89f49a53bf164832d1fb, type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cca5216e09f588438d112b288fd4c46, type: 2}
+    - target: {fileID: 4696552799440052774, guid: 1b3fafb03b0e89f49a53bf164832d1fb, type: 3}
       propertyPath: needKey
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4696552799440052774, guid: 1b3fafb03b0e89f49a53bf164832d1fb, type: 3}
       propertyPath: conditionDoor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -56,4 +56,9 @@ public class Inventory : MonoBehaviour
         items.Remove(item);
         UpdateInventory();
     }
+
+    public bool HasItem(ItemData item)
+    {
+        return items.Contains(item);    
+    }
 }

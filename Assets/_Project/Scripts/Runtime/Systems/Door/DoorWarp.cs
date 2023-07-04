@@ -4,7 +4,7 @@ public class DoorWarp : MonoBehaviour
 {
     [SerializeField] private Transform exitPos;
 
-    [SerializeField] private PlayerPhysics player;
+    private Inventory inventory;
 
     private DoorController controller;
 
@@ -17,8 +17,7 @@ public class DoorWarp : MonoBehaviour
     {
         if (!controller.needKey)
         {
-            player.transform.position = exitPos.position;
-            player._isDoor = false;
+            inventory.transform.position = exitPos.position;
         }
     }
 
@@ -29,20 +28,20 @@ public class DoorWarp : MonoBehaviour
             return;
         }
 
-        if (collision.TryGetComponent(out PlayerPhysics playerCol))
+        if (collision.TryGetComponent(out Inventory playerCol))
         {
-            player = playerCol;
-            CheckPlayerHasKey();
+            inventory = playerCol;
+            CheckInventoryHasKey();
             WarpPlayer();
         }
     }
 
-    private void CheckPlayerHasKey()
+    private void CheckInventoryHasKey()
     {
-        if (player.keys > 0 && controller.needKey)
+        if (inventory.HasItem(controller.item) && controller.needKey)
         {
             controller.needKey = false;   
-            player.keys--;
+            inventory.RemoveItem(controller.item);
         }
 
         controller.UpddateDoor();
