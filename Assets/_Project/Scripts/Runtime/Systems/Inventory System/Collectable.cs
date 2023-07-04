@@ -8,8 +8,12 @@ public class Collectable : MonoBehaviour
     {
         if (collision.TryGetComponent(out Inventory inventory))
         {
-            inventory.TakeItem(itemData);
-            Destroy(gameObject, 0.1f);
+            if (inventory.HasSlot())
+            {
+                inventory.TakeItem(itemData);
+                Destroy(gameObject, 0.1f);
+            }
+            
         }
     }
 }

@@ -47,8 +47,11 @@ public class Inventory : MonoBehaviour
 
     public void TakeItem(ItemData item)
     {
+
         items.Add(item);
         UpdateInventory();
+
+
     }
 
     public void RemoveItem(ItemData item)
@@ -59,6 +62,11 @@ public class Inventory : MonoBehaviour
 
     public bool HasItem(ItemData item)
     {
-        return items.Contains(item);    
+        return items.Contains(item);
+    }
+
+    public bool HasSlot()
+    {
+        return items.Count < slots.Length;
     }
 }

@@ -28,9 +28,9 @@ public class DoorWarp : MonoBehaviour
             return;
         }
 
-        if (collision.TryGetComponent(out Inventory playerCol))
+        if (collision.TryGetComponent(out Inventory inventoryCol))
         {
-            inventory = playerCol;
+            inventory = inventoryCol;
             CheckInventoryHasKey();
             WarpPlayer();
         }
