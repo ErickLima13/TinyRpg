@@ -1313,6 +1313,7 @@ MonoBehaviour:
   slotsGroup: {fileID: 1021794961}
   slots: []
   items: []
+  quantityOfItems: 00000000
 --- !u!1 &178258069
 GameObject:
   m_ObjectHideFlags: 0
@@ -7160,7 +7161,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1872944143
   m_SortingOrder: 9

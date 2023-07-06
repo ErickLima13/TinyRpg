@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92b417ce692207e4ab525f79cfbb4e15, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  nameItem: Key
+  id: 0
+  quantity: 1
+  onlySlot: 0
   icon: {fileID: 21300000, guid: f23be8e6b2dd6e94b91b6891a588441e, type: 3}

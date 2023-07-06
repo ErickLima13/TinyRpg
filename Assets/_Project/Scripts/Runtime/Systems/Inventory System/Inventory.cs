@@ -9,7 +9,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private Slot[] slots;
 
-    public List<ItemData> items;
+    [SerializeField] private List<ItemData> items;
+
+    public int[] quantityOfItems;
 
     private void Start()
     {
@@ -47,8 +49,20 @@ public class Inventory : MonoBehaviour
 
     public void TakeItem(ItemData item)
     {
+        if (!item.onlySlot)
+        {
+            items.Add(item);
+        }
+        else
+        {
+            if (!HasItem(item))
+            {
+                items.Add(item);
+            }
 
-        items.Add(item);
+            quantityOfItems[item.id] += item.quantity;
+        }
+
         UpdateInventory();
 
 
@@ -56,7 +70,15 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
-        items.Remove(item);
+        if(item.onlySlot)
+        {
+            quantityOfItems[item.id] -= item.quantity;
+        }
+        else
+        {
+            items.Remove(item);
+        }
+
         UpdateInventory();
     }
 
