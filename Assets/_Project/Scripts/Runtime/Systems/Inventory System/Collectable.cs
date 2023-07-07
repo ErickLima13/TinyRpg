@@ -4,6 +4,11 @@ public class Collectable : MonoBehaviour
 {
     public ItemData itemData;
 
+    private void Start()
+    {
+        itemData.usableItem = GetComponent<IUsableItem>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Inventory inventory))
@@ -11,9 +16,13 @@ public class Collectable : MonoBehaviour
             if (inventory.HasSlot())
             {
                 inventory.TakeItem(itemData);
-                Destroy(gameObject, 0.1f);
+                gameObject.SetActive(false);
             }
-            
+
+            if (itemData.usable)
+            {
+                inventory.AddItemUsable(itemData);
+            }
         }
     }
 }
