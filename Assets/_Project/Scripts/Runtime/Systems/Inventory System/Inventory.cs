@@ -15,9 +15,11 @@ public class Inventory : MonoBehaviour
 
     public int[] quantityOfItems;
 
-    public int itemId;
+    public int keyId;
 
     public string[] KeyCodes;
+
+    public ItemData temp;
 
     private void Start()
     {
@@ -31,6 +33,7 @@ public class Inventory : MonoBehaviour
 
         if (itemsUsable.Count > 0)
         {
+            UpdateKey();
             UseItemInventory();
         }
 
@@ -44,48 +47,28 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void UseItemInventory()
+    private void UpdateKey()
     {
         foreach (var k in KeyCodes)
         {
             if (Input.GetKeyDown(k))
             {
-                itemId = Array.IndexOf(KeyCodes, k);
+                keyId = Array.IndexOf(KeyCodes, k);
             }
         }
+    }
 
-
-        for(int i = 0;i < itemsUsable.Count;i++)
+    private void UseItemInventory()
+    {
+        if (Input.GetKeyDown(KeyCodes[keyId]))
         {
-            if (Input.GetKeyDown(KeyCodes[itemId]) && HasItem(itemsUsable[i]))
-            {
-               
-
-                if (SameID(itemId))
-                {
-                    print("TA INDO");
-
-                    itemsUsable[i].UseItem();
-                    RemoveItem(itemsUsable[i]);
-                    itemsUsable.Remove(itemsUsable[i]);
-                    break;
-                }
-                else
-                {
-                    i++;
-                    print("TA ");
-                    return;
-                }
+            if (SameID(keyId))
+            {      
+                temp.UseItem();
+                RemoveItem(temp);
+                itemsUsable.Remove(temp);
             }
         }
-
-        foreach (var item in itemsUsable)
-        {
-           
-
-        }
-
-
     }
 
     private void UpdateInventory()
@@ -120,14 +103,17 @@ public class Inventory : MonoBehaviour
         }
 
         UpdateInventory();
-
-
     }
 
     public void RemoveItem(ItemData item)
     {
         if (item.onlySlot)
         {
+            if (quantityOfItems[item.id] <= 0)
+            {
+                items.Remove(item);
+            }
+
             quantityOfItems[item.id] -= item.quantity;
         }
         else
@@ -150,21 +136,17 @@ public class Inventory : MonoBehaviour
 
     public void AddItemUsable(ItemData item)
     {
-        itemsUsable.Add(item);
+         itemsUsable.Add(item);
     }
 
     public bool SameID(int value)
     {
         foreach (ItemData item in itemsUsable)
-        {
-            print(value);
+        { 
             if (item.id == value)
             {
+                temp = item;
                 return true;
-            }
-            else
-            {
-                print("NAOE");
             }
         }
 
