@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
     {
         slots = slotsGroup.GetComponentsInChildren<Slot>();
         UpdateInventory();
+        panelInventory.SetActive(false);
     }
 
     private void Update()
@@ -45,6 +46,15 @@ public class Inventory : MonoBehaviour
         {
             panelInventory.SetActive(!panelInventory.activeSelf);
         }
+
+        if (panelInventory.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private void UpdateKey()
@@ -63,10 +73,10 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCodes[keyId]))
         {
             if (SameID(keyId))
-            {      
+            {
                 temp.UseItem();
                 RemoveItem(temp);
-                itemsUsable.Remove(temp);
+               
             }
         }
     }
@@ -112,6 +122,7 @@ public class Inventory : MonoBehaviour
             if (quantityOfItems[item.id] <= 0)
             {
                 items.Remove(item);
+                itemsUsable.Remove(temp);
             }
 
             quantityOfItems[item.id] -= item.quantity;
@@ -136,13 +147,13 @@ public class Inventory : MonoBehaviour
 
     public void AddItemUsable(ItemData item)
     {
-         itemsUsable.Add(item);
+        itemsUsable.Add(item);
     }
 
     public bool SameID(int value)
     {
         foreach (ItemData item in itemsUsable)
-        { 
+        {
             if (item.id == value)
             {
                 temp = item;
