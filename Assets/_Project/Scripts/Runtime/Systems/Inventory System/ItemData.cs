@@ -7,6 +7,7 @@ public class ItemData : ScriptableObject
     public int quantity;
     public bool onlySlot;
     public bool usable;
+    public bool missionItem;
     public Sprite icon;
 
     public IUsableItem usableItem;
@@ -16,6 +17,6 @@ public class ItemData : ScriptableObject
         if (usable)
         {
             usableItem.MethodUse();
-        }
+        } 
     }
 }

@@ -26,7 +26,14 @@ public class Slot : MonoBehaviour
         iconItem.sprite = itemData.icon;
         iconItem.enabled = true;
 
-        removeButton.gameObject.SetActive(true);
+        if (itemData.missionItem)
+        {
+            removeButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            removeButton.gameObject.SetActive(true);
+        }
 
         if (itemData.onlySlot)
         {
@@ -52,7 +59,7 @@ public class Slot : MonoBehaviour
 
     public void UseItemButton()
     {
-        if (item == null)
+        if (item != null && item.usable)
         {
             item.UseItem();
             inventory.RemoveItem(item);
@@ -61,6 +68,10 @@ public class Slot : MonoBehaviour
 
     public void RemoveItemButton()
     {
-        inventory.RemoveItem(item);
+        if(item != null)
+        {
+            inventory.RemoveItem(item);
+        }
+        
     }
 }

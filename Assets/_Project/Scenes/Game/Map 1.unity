@@ -1386,7 +1386,7 @@ MonoBehaviour:
   slots: []
   items: []
   itemsUsable: []
-  quantityOfItems: 00000000
+  quantityOfItems: 0000000001000000
   keyId: 0
   KeyCodes:
   - e

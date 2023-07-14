@@ -75,8 +75,7 @@ public class Inventory : MonoBehaviour
             if (SameID(keyId))
             {
                 temp.UseItem();
-                RemoveItem(temp);
-               
+                RemoveItem(temp);         
             }
         }
     }
