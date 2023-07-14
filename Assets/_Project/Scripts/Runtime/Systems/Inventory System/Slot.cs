@@ -12,6 +12,8 @@ public class Slot : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI quantityText;
 
+    [SerializeField] private Button removeButton;
+
     private void Start()
     {
         quantityText.gameObject.SetActive(false);
@@ -24,23 +26,41 @@ public class Slot : MonoBehaviour
         iconItem.sprite = itemData.icon;
         iconItem.enabled = true;
 
+        removeButton.gameObject.SetActive(true);
+
         if (itemData.onlySlot)
         {
             quantityText.gameObject.SetActive(true);
             quantityText.text = "x" + inventory.quantityOfItems[itemData.id].ToString();
         }
+        else
+        {
+            quantityText.gameObject.SetActive(false);
+        }
     }
 
     public void ClearIcon()
     {
+        item = null;
         quantityText.gameObject.SetActive(false);
         iconItem.sprite = null;
         iconItem.enabled = false;
+
+        removeButton.gameObject.SetActive(false);
+
     }
 
     public void UseItemButton()
     {
-        item.UseItem();
+        if (item == null)
+        {
+            item.UseItem();
+            inventory.RemoveItem(item);
+        }
+    }
+
+    public void RemoveItemButton()
+    {
         inventory.RemoveItem(item);
     }
 }
