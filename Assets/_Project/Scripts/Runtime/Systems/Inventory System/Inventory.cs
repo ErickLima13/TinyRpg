@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -20,6 +21,10 @@ public class Inventory : MonoBehaviour
     public string[] KeyCodes;
 
     public ItemData temp;
+
+    public PanelConfirm panelConfirm;
+
+    public bool canRemove;
 
     private void Start()
     {
@@ -161,5 +166,34 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void ClickItem(ItemData item,bool value)
+    {
+        temp = item;
+        canRemove = value;
+
+        if (value)
+        {
+            panelConfirm.PanelConfirmUse(temp);
+        }
+        else
+        {
+            panelConfirm.PanelConfirmRemove(temp);
+        }
+    }
+
+    public void ButtonConfirm()
+    {
+        if (canRemove)
+        {
+            RemoveItem(temp);
+        }
+        else
+        {
+            temp.UseItem();
+            RemoveItem(temp);
+        }
+        
     }
 }

@@ -61,8 +61,12 @@ public class Slot : MonoBehaviour
     {
         if (item != null && item.usable)
         {
-            item.UseItem();
-            inventory.RemoveItem(item);
+            //item.UseItem();
+            //inventory.RemoveItem(item);
+
+            print("CHMIE");
+
+            inventory.ClickItem(item, true);
         }
     }
 
@@ -70,7 +74,7 @@ public class Slot : MonoBehaviour
     {
         if(item != null)
         {
-            inventory.RemoveItem(item);
+            inventory.ClickItem(item,false);
         }
         
     }

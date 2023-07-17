@@ -66,7 +66,7 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && Time.timeScale != 0)
         {
             _animator.SetTrigger("Attack");
             _playerPhysics._speed = 0;
