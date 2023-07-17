@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -80,7 +79,7 @@ public class Inventory : MonoBehaviour
             if (SameID(keyId))
             {
                 temp.UseItem();
-                RemoveItem(temp);         
+                RemoveItem(temp);
             }
         }
     }
@@ -168,12 +167,12 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void ClickItem(ItemData item,bool value)
+    public void ClickItem(ItemData item, bool value)
     {
         temp = item;
         canRemove = value;
 
-        if (value)
+        if (!value)
         {
             panelConfirm.PanelConfirmUse(temp);
         }
@@ -194,6 +193,6 @@ public class Inventory : MonoBehaviour
             temp.UseItem();
             RemoveItem(temp);
         }
-        
+
     }
 }

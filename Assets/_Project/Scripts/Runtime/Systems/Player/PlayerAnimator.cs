@@ -57,16 +57,18 @@ public class PlayerAnimator : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        _animator.SetBool("Walk", Walking());
-        WalkingUp();
-        WalkSideways();
-        Attack();
-
+        if (Time.timeScale != 0)
+        {
+            _animator.SetBool("Walk", Walking());
+            WalkingUp();
+            WalkSideways();
+            Attack();
+        }
     }
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1") && Time.timeScale != 0)
+        if (Input.GetButtonDown("Fire1"))
         {
             _animator.SetTrigger("Attack");
             _playerPhysics._speed = 0;

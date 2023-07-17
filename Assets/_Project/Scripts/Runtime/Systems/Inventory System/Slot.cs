@@ -52,30 +52,23 @@ public class Slot : MonoBehaviour
         quantityText.gameObject.SetActive(false);
         iconItem.sprite = null;
         iconItem.enabled = false;
-
         removeButton.gameObject.SetActive(false);
-
     }
 
     public void UseItemButton()
     {
         if (item != null && item.usable)
         {
-            //item.UseItem();
-            //inventory.RemoveItem(item);
-
-            print("CHMIE");
-
-            inventory.ClickItem(item, true);
+            inventory.ClickItem(item, false);
         }
     }
 
     public void RemoveItemButton()
     {
-        if(item != null)
+        if (item != null)
         {
-            inventory.ClickItem(item,false);
+            inventory.ClickItem(item, true);
         }
-        
+
     }
 }

@@ -17,6 +17,6 @@ public class ItemData : ScriptableObject
         if (usable)
         {
             usableItem.MethodUse();
-        } 
+        }
     }
 }
