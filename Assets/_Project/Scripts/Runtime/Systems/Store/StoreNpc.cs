@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StoreNpc : MonoBehaviour
@@ -16,13 +14,18 @@ public class StoreNpc : MonoBehaviour
         _panelStore.SetActive(false);
         _buttonOpen.SetActive(false);
         _inventory = FindObjectOfType<Inventory>();
+        _inventory.OnCloseInventoryEvent += CloseStore;
+    }
+
+    private void OnDestroy()
+    {
+        _inventory.OnCloseInventoryEvent -= CloseStore;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && canInteract)
         {
-            print(name);
             _panelStore.SetActive(true);
             _inventory.OpenOrCloseInventory(true);
             _buttonOpen.SetActive(false);
@@ -40,14 +43,16 @@ public class StoreNpc : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.TryGetComponent(out PlayerPhysics player))
+        if (collision.gameObject.TryGetComponent(out PlayerPhysics player))
         {
             canInteract = false;
             _buttonOpen.SetActive(false);
         }
     }
 
-
-
+    private void CloseStore()
+    {
+        _panelStore.SetActive(false);
+    }
 
 }

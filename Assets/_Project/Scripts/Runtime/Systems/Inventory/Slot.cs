@@ -16,6 +16,7 @@ public class Slot : MonoBehaviour
 
     [SerializeField] private bool _isStoreSlot;
 
+
     private void Start()
     {
         _quantityText.gameObject.SetActive(false);
@@ -24,7 +25,23 @@ public class Slot : MonoBehaviour
         if (_isStoreSlot)
         {
             AddIcon(_item);
-            _quantityText.text = "x" + _item.price.ToString();
+            _quantityText.text = "$" + _item.price.ToString();
+        }
+
+        _inventory.OnConfirmBuyEvent += ClearSlotSell;
+
+    }
+
+    private void OnDestroy()
+    {
+        _inventory.OnConfirmBuyEvent -= ClearSlotSell;
+    }
+
+    private void ClearSlotSell()
+    {
+        if (_isStoreSlot && _item == null)
+        {
+            ClearIcon();
         }
     }
 
@@ -60,7 +77,7 @@ public class Slot : MonoBehaviour
         _quantityText.gameObject.SetActive(false);
         _iconItem.sprite = null;
         _iconItem.enabled = false;
-        _removeButton.gameObject.SetActive(false);
+        _removeButton?.gameObject.SetActive(false);
     }
 
     public void UseItemButton()
@@ -78,5 +95,14 @@ public class Slot : MonoBehaviour
             _inventory.ClickItem(_item, true);
         }
 
+    }
+
+    public void StoreItemButton()
+    {
+        if (_item != null)
+        {
+            _inventory.ClickItemStore(_item);
+            _item = null;
+        }
     }
 }

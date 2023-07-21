@@ -18,4 +18,4 @@ MonoBehaviour:
   onlySlot: 1
   usable: 1
   missionItem: 0
-  icon: {fileID: 21300000, guid: ce46b85ab8c2dc343a93d8051839c6a3, type: 3}
+  icon: {fileID: -2096176316, guid: ae6b33a6e5a06154d983856588bd5f6e, type: 3}

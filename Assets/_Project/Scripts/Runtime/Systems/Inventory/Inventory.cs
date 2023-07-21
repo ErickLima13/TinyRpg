@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public event Action OnConfirmBuyEvent;
+    public event Action OnCloseInventoryEvent;
+
+
     [SerializeField] private GameObject panelInventory;
 
     [SerializeField] private Transform slotsGroup;
@@ -15,15 +19,17 @@ public class Inventory : MonoBehaviour
 
     public int[] quantityOfItems;
 
-    public int keyId;
+    [SerializeField] private int keyId;
 
-    public string[] KeyCodes;
+    [SerializeField] private string[] KeyCodes;
 
-    public ItemData temp;
+    [SerializeField] private ItemData temp;
 
-    public PanelConfirm panelConfirm;
+    [SerializeField] private PanelConfirm panelConfirm;
 
-    public bool canRemove;
+    [SerializeField] private bool canRemove;
+
+    [SerializeField] private int _coins;
 
     private void Start()
     {
@@ -45,11 +51,13 @@ public class Inventory : MonoBehaviour
     }
 
     private void OpenCloseInventory()
-    {
+    { 
         if (Input.GetButtonDown("Cancel"))
         {
             panelInventory.SetActive(!panelInventory.activeSelf);
         }
+
+
 
         if (panelInventory.activeSelf)
         {
@@ -57,6 +65,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
+            OnCloseInventoryEvent?.Invoke();
             Time.timeScale = 1;
         }
     }
@@ -109,10 +118,14 @@ public class Inventory : MonoBehaviour
         {
             if (!HasItem(item))
             {
+                quantityOfItems[item.id] = item.quantity;
                 items.Add(item);
             }
+            else
+            {
+                quantityOfItems[item.id] += item.quantity;
 
-            quantityOfItems[item.id] += item.quantity;
+            }
         }
 
         UpdateInventory();
@@ -184,6 +197,16 @@ public class Inventory : MonoBehaviour
 
     public void ButtonConfirm()
     {
+        panelConfirm.ClosePanel();
+        OpenOrCloseInventory(false);
+
+        if (panelConfirm.PanelActive())
+        {
+            OnConfirmBuyEvent?.Invoke();
+            BuyItem(temp);
+            return;
+        }
+
         if (canRemove)
         {
             RemoveItem(temp);
@@ -193,10 +216,30 @@ public class Inventory : MonoBehaviour
             temp.UseItem();
             RemoveItem(temp);
         }
+
     }
 
     public void OpenOrCloseInventory(bool value)
     {
         panelInventory.SetActive(value);
+    }
+
+    public bool BuyItem(ItemData item)
+    {
+        if (_coins >= item.price)
+        {
+            TakeItem(item);
+            _coins -= item.price;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void ClickItemStore(ItemData item)
+    {
+        temp = item;
+        panelConfirm.PanelBuyItem(item);
     }
 }
