@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour
 
     private void UseItemInventory()
     {
-        if (Input.GetKeyDown(KeyCodes[keyId]))
+        if (Input.GetKeyDown(KeyCodes[keyId]) && panelInventory.activeSelf)
         {
             if (SameID(keyId))
             {
@@ -193,6 +193,10 @@ public class Inventory : MonoBehaviour
             temp.UseItem();
             RemoveItem(temp);
         }
+    }
 
+    public void OpenOrCloseInventory(bool value)
+    {
+        panelInventory.SetActive(value);
     }
 }

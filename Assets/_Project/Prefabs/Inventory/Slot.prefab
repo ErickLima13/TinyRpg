@@ -60,9 +60,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f93f36fee861d9489b34a5c81052298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconItem: {fileID: 9047188709022330117}
-  quantityText: {fileID: 8834573009209331412}
-  removeButton: {fileID: 2845774667144930698}
+  _item: {fileID: 0}
+  _iconItem: {fileID: 9047188709022330117}
+  _quantityText: {fileID: 8834573009209331412}
+  _removeButton: {fileID: 2845774667144930698}
+  _isStoreSlot: 0
 --- !u!1 &2037092294426010201
 GameObject:
   m_ObjectHideFlags: 0

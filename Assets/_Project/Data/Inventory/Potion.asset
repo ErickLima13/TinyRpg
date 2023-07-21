@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   quantity: 1
+  price: 35
   onlySlot: 1
   usable: 1
   missionItem: 0

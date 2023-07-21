@@ -5,6 +5,7 @@ public class ItemData : ScriptableObject
 {
     public int id;
     public int quantity;
+    public int price;
     public bool onlySlot;
     public bool usable;
     public bool missionItem;
