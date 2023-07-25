@@ -203,7 +203,7 @@ public class Inventory : MonoBehaviour
         if (panelConfirm.PanelActive())
         {
             OnConfirmBuyEvent?.Invoke();
-            BuyItem(temp);
+            HasCoins(temp);
             return;
         }
 
@@ -224,13 +224,10 @@ public class Inventory : MonoBehaviour
         panelInventory.SetActive(value);
     }
 
-    public bool BuyItem(ItemData item)
+    public bool HasCoins(ItemData item)
     {
         if (_coins >= item.price)
         {
-            TakeItem(item);
-            _coins -= item.price;
-
             return true;
         }
 
@@ -241,5 +238,10 @@ public class Inventory : MonoBehaviour
     {
         temp = item;
         panelConfirm.PanelBuyItem(item);
+    }
+
+    public void CoinsManager(int value)
+    {
+        _coins += value;   
     }
 }

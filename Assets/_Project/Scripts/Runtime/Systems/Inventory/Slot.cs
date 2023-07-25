@@ -14,19 +14,17 @@ public class Slot : MonoBehaviour
 
     [SerializeField] private Button _removeButton;
 
-    [SerializeField] private bool _isStoreSlot;
-
 
     private void Start()
     {
         _quantityText.gameObject.SetActive(false);
         _inventory = FindObjectOfType<Inventory>();
 
-        if (_isStoreSlot)
-        {
-            AddIcon(_item);
-            _quantityText.text = "$" + _item.price.ToString();
-        }
+        //if (_isStoreSlot)
+        //{
+        //    AddIcon(_item);
+        //    _quantityText.text = "$" + _item.price.ToString();
+        //}
 
         _inventory.OnConfirmBuyEvent += ClearSlotSell;
 
@@ -39,10 +37,10 @@ public class Slot : MonoBehaviour
 
     private void ClearSlotSell()
     {
-        if (_isStoreSlot && _item == null)
-        {
-            ClearIcon();
-        }
+        //if (_isStoreSlot && _item == null)
+        //{
+        //    ClearIcon();
+        //}
     }
 
     public void AddIcon(ItemData itemData)
