@@ -4,23 +4,21 @@ using UnityEngine.UI;
 
 public class SlotStore : MonoBehaviour
 {
+    [SerializeField] private ItemData _storeItem;
 
+    [SerializeField] private Image _iconItem;
 
-    public ItemData storeItem;
-    public Image iconItem;
-    public TextMeshProUGUI textPrice;
+    [SerializeField] private TextMeshProUGUI _textPrice;
 
-    public Button buttonBuy;
+    [SerializeField] private Button _buttonBuy;
 
     private Inventory inventory;
 
     private void Initialization()
     {
         inventory = FindObjectOfType<Inventory>();
-
-        iconItem.sprite = storeItem.icon;
-        textPrice.text = storeItem.price.ToString();
-
+        _iconItem.sprite = _storeItem.icon;
+        _textPrice.text = "$" + _storeItem.price.ToString();
         CheckCoins();
     }
 
@@ -31,22 +29,22 @@ public class SlotStore : MonoBehaviour
 
     private void CheckCoins()
     {
-        if (inventory.HasCoins(storeItem))
+        if (inventory.HasCoins(_storeItem))
         {
-            buttonBuy.interactable = true;
+            _buttonBuy.interactable = true;
         }
         else
         {
-            buttonBuy.interactable = false;
+            _buttonBuy.interactable = false;
         }
     }
 
     public void BuyItemButton()
     {
-        if (inventory.HasCoins(storeItem) && inventory.HasSlot())
+        if (inventory.HasCoins(_storeItem) && inventory.HasSlot())
         {
-            inventory.CoinsManager(storeItem.price * -1);
-            inventory.TakeItem(storeItem);
+            inventory.CoinsManager(_storeItem.price * -1);
+            inventory.TakeItem(_storeItem);
             CheckCoins();
         }
     }

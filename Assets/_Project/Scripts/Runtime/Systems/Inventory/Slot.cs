@@ -18,29 +18,7 @@ public class Slot : MonoBehaviour
     private void Start()
     {
         _quantityText.gameObject.SetActive(false);
-        _inventory = FindObjectOfType<Inventory>();
-
-        //if (_isStoreSlot)
-        //{
-        //    AddIcon(_item);
-        //    _quantityText.text = "$" + _item.price.ToString();
-        //}
-
-        _inventory.OnConfirmBuyEvent += ClearSlotSell;
-
-    }
-
-    private void OnDestroy()
-    {
-        _inventory.OnConfirmBuyEvent -= ClearSlotSell;
-    }
-
-    private void ClearSlotSell()
-    {
-        //if (_isStoreSlot && _item == null)
-        //{
-        //    ClearIcon();
-        //}
+        _inventory = FindObjectOfType<Inventory>();      
     }
 
     public void AddIcon(ItemData itemData)
@@ -93,14 +71,5 @@ public class Slot : MonoBehaviour
             _inventory.ClickItem(_item, true);
         }
 
-    }
-
-    public void StoreItemButton()
-    {
-        if (_item != null)
-        {
-            _inventory.ClickItemStore(_item);
-            _item = null;
-        }
     }
 }

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public event Action OnConfirmBuyEvent;
     public event Action OnCloseInventoryEvent;
-
 
     [SerializeField] private GameObject panelInventory;
 
@@ -51,7 +49,7 @@ public class Inventory : MonoBehaviour
     }
 
     private void OpenCloseInventory()
-    { 
+    {
         if (Input.GetButtonDown("Cancel"))
         {
             panelInventory.SetActive(!panelInventory.activeSelf);
@@ -200,13 +198,6 @@ public class Inventory : MonoBehaviour
         panelConfirm.ClosePanel();
         OpenOrCloseInventory(false);
 
-        if (panelConfirm.PanelActive())
-        {
-            OnConfirmBuyEvent?.Invoke();
-            HasCoins(temp);
-            return;
-        }
-
         if (canRemove)
         {
             RemoveItem(temp);
@@ -234,14 +225,8 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    public void ClickItemStore(ItemData item)
-    {
-        temp = item;
-        panelConfirm.PanelBuyItem(item);
-    }
-
     public void CoinsManager(int value)
     {
-        _coins += value;   
+        _coins += value;
     }
 }

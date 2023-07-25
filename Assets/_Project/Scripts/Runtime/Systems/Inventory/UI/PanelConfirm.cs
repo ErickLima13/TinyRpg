@@ -7,7 +7,6 @@ public class PanelConfirm : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject textUse;
     [SerializeField] private GameObject textRemove;
-    [SerializeField] private GameObject textBuy;
     [SerializeField] private GameObject buttonConfirm;
 
     [SerializeField] private Image iconItem;
@@ -31,13 +30,6 @@ public class PanelConfirm : MonoBehaviour
         iconItem.sprite = item.icon;
     }
 
-    public void PanelBuyItem(ItemData item)
-    {
-        panel.SetActive(true);
-        ResetGameObjects(textBuy);
-        iconItem.sprite = item.icon;
-    }
-
 
     private void ResetGameObjects(GameObject gameObject1)
     {
@@ -45,7 +37,6 @@ public class PanelConfirm : MonoBehaviour
         {
             textUse,
             textRemove,
-            textBuy,
         };
 
         foreach (GameObject item in temp)
@@ -54,11 +45,6 @@ public class PanelConfirm : MonoBehaviour
         }
 
         gameObject1.SetActive(true);
-    }
-
-    public bool PanelActive()
-    {
-        return textBuy.activeSelf;
     }
 
     public void ClosePanel()
