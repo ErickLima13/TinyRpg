@@ -30,12 +30,11 @@ public class StoreNpc : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canInteract && !startDialog && !IsStoreOpen())
+        if (Input.GetKeyDown(KeyCode.E) && canInteract  && !IsStoreOpen() && !_dialogController.CanTalk())
         {
-            _dialogController.StartTalk(_dialogNpc._dialog);
-            startDialog = true;
+            _dialogController.StartTalk(_dialogNpc);
         }
-        else if (Input.GetKeyDown(KeyCode.E) && startDialog && !IsStoreOpen())
+        else if (Input.GetKeyDown(KeyCode.E) && _dialogController.CanTalk() && !IsStoreOpen())
         {
             _dialogController.NextTalk();
         }
@@ -54,7 +53,7 @@ public class StoreNpc : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerPhysics player))
         {
             canInteract = true;
-            _buttonOpen.SetActive(true);
+            _buttonOpen.SetActive(canInteract);
         }
     }
 
@@ -63,7 +62,7 @@ public class StoreNpc : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out PlayerPhysics player))
         {
             canInteract = false;
-            _buttonOpen.SetActive(false);
+            _buttonOpen.SetActive(canInteract);
         }
     }
 
