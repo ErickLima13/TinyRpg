@@ -30,7 +30,7 @@ public class StoreNpc : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canInteract  && !IsStoreOpen() && !_dialogController.CanTalk())
+        if (Input.GetKeyDown(KeyCode.E) && canInteract && !IsStoreOpen() && !_dialogController.CanTalk())
         {
             _dialogController.StartTalk(_dialogNpc);
         }

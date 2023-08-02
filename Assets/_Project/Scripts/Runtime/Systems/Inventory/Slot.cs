@@ -18,7 +18,7 @@ public class Slot : MonoBehaviour
     private void Start()
     {
         _quantityText.gameObject.SetActive(false);
-        _inventory = FindObjectOfType<Inventory>();      
+        _inventory = FindObjectOfType<Inventory>();
     }
 
     public void AddIcon(ItemData itemData)

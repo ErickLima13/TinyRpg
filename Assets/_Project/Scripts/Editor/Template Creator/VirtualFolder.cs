@@ -1,19 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEngine;
 
 public struct VirtualFolder
 {
-    public string Root { get => root; private set => root = value; }
-    public string Name { get => name; private set => name = value; }
-    public List<VirtualFolder> SubFolders { get => subFolders; private set => subFolders = value; }
+    public string Root
+    {
+        get => root; private set => root = value;
+    }
+    public string Name
+    {
+        get => name; private set => name = value;
+    }
+    public List<VirtualFolder> SubFolders
+    {
+        get => subFolders; private set => subFolders = value;
+    }
 
     string root;
     string name;
     List<VirtualFolder> subFolders;
 
-    public VirtualFolder (string root, string name)
+    public VirtualFolder(string root, string name)
     {
         this.root = root;
         this.name = name;
@@ -24,7 +31,7 @@ public struct VirtualFolder
     /// </summary>
     /// <param name="name">Name of the new subfolder.</param>
     /// <returns>The new virtual folder.</returns>
-    public VirtualFolder AddSubFolder (string name)
+    public VirtualFolder AddSubFolder(string name)
     {
         var subFolder = new VirtualFolder(root + "/" + this.name + "/", name);
         subFolders.Add(subFolder);
@@ -35,7 +42,7 @@ public struct VirtualFolder
     /// Adds multiple new sub folders to this folder.
     /// </summary>
     /// <param name="names">An array of names for the sub folders.</param>
-    public void AddSubFolders (string[] names)
+    public void AddSubFolders(string[] names)
     {
         foreach (var item in names)
         {
@@ -63,7 +70,7 @@ public struct VirtualFolder
         }
     }
 
-    void CreateFolder (string fullPath, bool createGitDummyFile = false)
+    void CreateFolder(string fullPath, bool createGitDummyFile = false)
     {
         Directory.CreateDirectory(fullPath);
         if (createGitDummyFile)

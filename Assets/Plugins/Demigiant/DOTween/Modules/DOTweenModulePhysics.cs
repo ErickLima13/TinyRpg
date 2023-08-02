@@ -2,7 +2,6 @@
 // Created: 2018/07/13
 
 #if true // MODULE_MARKER
-using System;
 using DG.Tweening.Core;
 using DG.Tweening.Core.Enums;
 using DG.Tweening.Plugins;
@@ -13,7 +12,7 @@ using UnityEngine;
 #pragma warning disable 1591
 namespace DG.Tweening
 {
-	public static class DOTweenModulePhysics
+    public static class DOTweenModulePhysics
     {
         #region Shortcuts
 
@@ -101,7 +100,8 @@ namespace DG.Tweening
         /// <param name="snapping">If TRUE the tween will smoothly snap all values to integers</param>
         public static Sequence DOJump(this Rigidbody target, Vector3 endValue, float jumpPower, int numJumps, float duration, bool snapping = false)
         {
-            if (numJumps < 1) numJumps = 1;
+            if (numJumps < 1)
+                numJumps = 1;
             float startPosY = 0;
             float offsetY = -1;
             bool offsetYSet = false;
@@ -116,8 +116,10 @@ namespace DG.Tweening
                     .SetOptions(AxisConstraint.Z, snapping).SetEase(Ease.Linear)
                 ).Join(yTween)
                 .SetTarget(target).SetEase(DOTween.defaultEaseType);
-            yTween.OnUpdate(() => {
-                if (!offsetYSet) {
+            yTween.OnUpdate(() =>
+            {
+                if (!offsetYSet)
+                {
                     offsetYSet = true;
                     offsetY = s.isRelative ? endValue.y : endValue.y - startPosY;
                 }
@@ -145,7 +147,8 @@ namespace DG.Tweening
             PathMode pathMode = PathMode.Full3D, int resolution = 10, Color? gizmoColor = null
         )
         {
-            if (resolution < 1) resolution = 1;
+            if (resolution < 1)
+                resolution = 1;
             TweenerCore<Vector3, Path, PathOptions> t = DOTween.To(PathPlugin.Get(), () => target.position, target.MovePosition, new Path(pathType, path, resolution, gizmoColor), duration)
                 .SetTarget(target).SetUpdate(UpdateType.Fixed);
 
@@ -170,7 +173,8 @@ namespace DG.Tweening
             PathMode pathMode = PathMode.Full3D, int resolution = 10, Color? gizmoColor = null
         )
         {
-            if (resolution < 1) resolution = 1;
+            if (resolution < 1)
+                resolution = 1;
             Transform trans = target.transform;
             TweenerCore<Vector3, Path, PathOptions> t = DOTween.To(PathPlugin.Get(), () => trans.localPosition, x => target.MovePosition(trans.parent == null ? x : trans.parent.TransformPoint(x)), new Path(pathType, path, resolution, gizmoColor), duration)
                 .SetTarget(target).SetUpdate(UpdateType.Fixed);
@@ -211,6 +215,6 @@ namespace DG.Tweening
         #endregion
 
         #endregion
-	}
+    }
 }
 #endif

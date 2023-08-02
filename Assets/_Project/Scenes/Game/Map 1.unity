@@ -1527,29 +1527,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialog:
     name: 
-    iconNpc: {fileID: 21300000, guid: 992dd77f0db77694fa2b540eb12ead6f, type: 3}
-    history:
-    - 'Ola '
-    - To dizendo
-    - Ta dito
-  _dialogs:
-  - name: oli
     iconNpc: {fileID: 0}
-    history:
-    - 'Ola '
-    - 'Era uma vez um '
-  - name: oli
-    iconNpc: {fileID: 0}
-    history:
-    - 'pudim apaixonado '
-    - 'que estava andando na rua '
+    history: []
+  _dialogs: []
   _endDialog:
     name: oli
     iconNpc: {fileID: 0}
-    history:
-    - "quando foi atropelado, \r\npudim amassado.\r\n"
+    history: []
   _allDialog: 0
   _continue: 1
+  _nameXml: XMLOli
 --- !u!1001 &121505778
 PrefabInstance:
   m_ObjectHideFlags: 0

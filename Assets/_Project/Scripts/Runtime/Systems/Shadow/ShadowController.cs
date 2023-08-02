@@ -25,9 +25,9 @@ public class ShadowController : MonoBehaviour
 
     public void UpdateListLights()
     {
-        if(lightSources.Length > 0)
+        if (lightSources.Length > 0)
         {
-            foreach(Transform t in shadowTargets)
+            foreach (Transform t in shadowTargets)
             {
                 Destroy(t.gameObject);
             }

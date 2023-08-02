@@ -35,7 +35,7 @@ public class MiniMapController : MonoBehaviour
 
     public void UpdateMap(int value)
     {
-       
+
         roomsObj[_idCurrentRoom].SetActive(false);
         roomsObj[value].SetActive(true);
         _idCurrentRoom = value;

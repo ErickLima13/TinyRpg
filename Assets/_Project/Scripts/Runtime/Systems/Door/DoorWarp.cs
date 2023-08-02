@@ -40,7 +40,7 @@ public class DoorWarp : MonoBehaviour
     {
         if (inventory.HasItem(controller.item) && controller.needKey)
         {
-            controller.needKey = false;   
+            controller.needKey = false;
             inventory.RemoveItem(controller.item);
         }
 

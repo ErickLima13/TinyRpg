@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 
 namespace TMPro.Examples
 {
-    
+
     public class Benchmark04 : MonoBehaviour
     {
 
@@ -34,7 +33,8 @@ namespace TMPro.Examples
                     // TextMesh Pro Implementation
                     GameObject go = new GameObject("Text - " + i + " Pts");
 
-                    if (lineHeight > orthoSize * 2) return;
+                    if (lineHeight > orthoSize * 2)
+                        return;
 
                     go.transform.position = m_Transform.position + new Vector3(ratio * -orthoSize * 0.975f, orthoSize * 0.975f - lineHeight, 0);
 

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 
 namespace TMPro.Examples
@@ -74,7 +74,8 @@ namespace TMPro.Examples
                 int characterCount = textInfo.characterCount;
 
 
-                if (characterCount == 0) continue;
+                if (characterCount == 0)
+                    continue;
 
                 //vertices = textInfo.meshInfo[0].vertices;
                 //int lastVertexIndex = textInfo.characterInfo[characterCount - 1].vertexIndex;

@@ -35,9 +35,9 @@ public class DialogController : MonoBehaviour
         nameNpc.text = _npcDialog._dialog.name;
         imageNpc.sprite = _npcDialog._dialog.iconNpc;
 
-        foreach(string talk in _npcDialog._dialog.history)
+        foreach (string talk in _npcDialog._dialog.history)
         {
-            converse.Enqueue(talk);
+            converse.Enqueue(FormatText(talk));
         }
 
         NextTalk();
@@ -83,10 +83,25 @@ public class DialogController : MonoBehaviour
     {
         converseNpc.text = " ";
 
-        foreach(char t in text.ToCharArray())
+        foreach (char t in text.ToCharArray())
         {
             converseNpc.text += t.ToString();
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    private string FormatText(string text)
+    {
+        string temp = text;
+
+        temp = temp.Replace("npc_name", _npcDialog._dialog.name);
+
+        string color = "<color=#00FF00>";
+        string color2 = "</color>";
+
+        temp = temp.Replace("cor_nova", color);
+        temp = temp.Replace("fim_cor", color2);
+
+        return temp;
     }
 }

@@ -19,7 +19,7 @@ public class ConditionController : MonoBehaviour
         if (conditionsObjects.Count <= 0)
         {
             doorController.conditionDoor = false;
-            doorController.UpddateDoor();    
+            doorController.UpddateDoor();
         }
     }
 
