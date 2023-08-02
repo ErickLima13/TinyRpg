@@ -3,12 +3,9 @@
 <npc>
 
 	<dialog name = "Oli">
-
 		<text>
-
 			<txt>Olá, me chamo npc_name</txt>
 			<txt>e você ?</txt>
-
 		</text>
 		
 		<image>oli</image>
@@ -16,35 +13,38 @@
 	</dialog>
 
 	<dialog name = "Helena">
-
 		<text>
-
 			<txt>Olá me chamo npc_name,estou bem</txt>
 			<txt>até logo</txt>
-		
 		</text>
 		
 		<image>helena</image>
 
 	</dialog>
 	<dialog name = "Oli">
-
 		<text>
-
 			<txt>até</txt>
-
 		</text>
 
 		<image>oli</image>
 
 	</dialog>
 
-	<enddialog name = "Oli">
-
+	<question name = "Oli">
 		<text>
+			<txt>Ei tu, faz uma missão pra mim?</txt>
+		</text>
 
+		<answers>
+			<txt name ="xml1">Claro, bora!</txt>
+			<txt name ="xml2">To ocupado.</txt>
+		</answers>
+			
+	</question>
+	
+	<enddialog name = "Oli">
+		<text>
 			<txt>até logo</txt>
-
 		</text>
 
 		<image>oli</image>

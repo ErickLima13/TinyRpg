@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<npc>
+
+	<dialog name = "Oli">
+		<text>
+			<txt>Entendi, preguiçosa.</txt>
+		</text>
+
+		<image>oli</image>
+
+	</dialog>
+
+	<enddialog name = "Oli">
+		<text>
+			<txt>até logo</txt>
+		</text>
+
+		<image>oli</image>
+		
+	</enddialog>
+
+</npc>

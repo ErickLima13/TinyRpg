@@ -13,7 +13,17 @@ public class NpcDialog : MonoBehaviour
 
     [SerializeField] private bool _allDialog;
     [SerializeField] private bool _continue;
+    [SerializeField] private string _path;
+    [SerializeField] private string _nameNpcPath;
     [SerializeField] private string _nameXml;
+
+    
+    [Header("Question System")]
+    [SerializeField] private string _nameQuestion;
+    [SerializeField] private string _question;
+    [SerializeField] private List<string> _answersList;
+    [SerializeField] private List<string> _targetXml;
+
 
     public bool GetBoolContinue()
     {
@@ -61,7 +71,10 @@ public class NpcDialog : MonoBehaviour
 
     private void LoadXMLData()
     {
-        TextAsset xmlData = (TextAsset)Resources.Load(_nameXml);
+
+
+
+        TextAsset xmlData = (TextAsset)Resources.Load(_path + _nameNpcPath + _nameXml);
         XmlDocument xmlDocument = new();
 
         xmlDocument.LoadXml(xmlData.text);
@@ -106,6 +119,18 @@ public class NpcDialog : MonoBehaviour
                 {
                     string imageName = "Sprites/" + n.InnerText;
                     _endDialog.iconNpc = Resources.Load<Sprite>(imageName);
+                }
+            }
+            else if (node.Name == "question")
+            {
+                _nameQuestion = node.Attributes["name"].Value;
+                _question = node["text"].FirstChild.InnerText;
+                _answersList = new();
+                _targetXml = new();
+                foreach (XmlNode n in node["answers"].ChildNodes)
+                {
+                    _answersList.Add(n.InnerText);
+                    _targetXml.Add(n.Attributes["name"].Value);
                 }
             }
         }

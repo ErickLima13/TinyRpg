@@ -11,18 +11,29 @@ public class DialogController : MonoBehaviour
 
     private NpcDialog _npcDialog;
 
+    [Header("Dialog")]
     [SerializeField] private GameObject painelDialog;
     [SerializeField] private GameObject _buttonOpen;
-
     [SerializeField] private TextMeshProUGUI nameNpc;
     [SerializeField] private TextMeshProUGUI converseNpc;
-
     [SerializeField] private Image imageNpc;
-
     [SerializeField] private Queue<string> converse = new();
+
+    [Header("Question")]
+    [SerializeField] private GameObject _painelQuestion;
+    [SerializeField] private TextMeshProUGUI _questionText;
+    [SerializeField] private Button[] _answerButtons;
+    [SerializeField] private List<TextMeshProUGUI> _answersText = new();
+
+
 
     private void Start()
     {
+        foreach (var answer in _answerButtons)
+        {
+            _answersText.Add(answer.GetComponent<TextMeshProUGUI>());
+        }
+
         painelDialog.SetActive(false);
         _buttonOpen.SetActive(false);
     }
