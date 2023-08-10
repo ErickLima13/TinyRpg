@@ -17,11 +17,12 @@ public class NpcDialog : MonoBehaviour
     [SerializeField] private string _nameNpcPath;
     [SerializeField] private string _nameXml;
 
-    
+
     [Header("Question System")]
-    [SerializeField] private string _nameQuestion;
-    [SerializeField] private string _question;
-    [SerializeField] private List<string> _answersList;
+    public Sprite spriteQuestion;
+    public string _nameQuestion;
+    public string _question;
+    public List<string> _answersList;
     [SerializeField] private List<string> _targetXml;
 
 
@@ -35,9 +36,15 @@ public class NpcDialog : MonoBehaviour
         return _allDialog;
     }
 
+
+    public void SetAllDialog(bool value)
+    {
+        _allDialog = value;
+    }
+
     private void Start()
     {
-        LoadXMLData();
+        LoadXMLData(_nameXml);
     }
 
 
@@ -69,12 +76,20 @@ public class NpcDialog : MonoBehaviour
         _dialog.iconNpc = _dialogs[_indexDialog].iconNpc;
     }
 
-    private void LoadXMLData()
+    private void LoadXMLData(string xml)
     {
+        _indexDialog = 0;
+        _dialogs.Clear();
+        _nameQuestion = null;
+        _question = null;
+        _answersList.Clear();
+        _targetXml.Clear();
 
+        _endDialog.name = null;
+        _endDialog.history.Clear();
+        _endDialog = new();
 
-
-        TextAsset xmlData = (TextAsset)Resources.Load(_path + _nameNpcPath + _nameXml);
+        TextAsset xmlData = (TextAsset)Resources.Load(_path + _nameNpcPath + xml);
         XmlDocument xmlDocument = new();
 
         xmlDocument.LoadXml(xmlData.text);
@@ -132,10 +147,27 @@ public class NpcDialog : MonoBehaviour
                     _answersList.Add(n.InnerText);
                     _targetXml.Add(n.Attributes["name"].Value);
                 }
+
+                foreach (XmlNode n in node["image"].ChildNodes)
+                {
+                    string imageName = "Sprites/" + n.InnerText;
+
+                    spriteQuestion = Resources.Load<Sprite>(imageName);
+                }
             }
         }
 
         SetupDialog();
 
+    }
+
+    public void ChooseXml(int valueXml)
+    {
+        LoadXMLData(_targetXml[valueXml]);
+    }
+
+    public bool HasQuestion()
+    {
+        return _question != null;
     }
 }

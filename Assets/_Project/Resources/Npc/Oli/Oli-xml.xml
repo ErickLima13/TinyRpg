@@ -37,8 +37,10 @@
 
 		<answers>
 			<txt name ="xml1">Claro, bora!</txt>
-			<txt name ="xml2">To ocupado.</txt>
+			<txt name ="xml2">To ocupada.</txt>
 		</answers>
+
+		<image>oli</image>
 			
 	</question>
 	

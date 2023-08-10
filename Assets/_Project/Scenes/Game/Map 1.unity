@@ -1539,6 +1539,7 @@ MonoBehaviour:
   _path: Npc/
   _nameNpcPath: Oli/
   _nameXml: Oli-xml
+  spriteQuestion: {fileID: 0}
   _nameQuestion: 
   _question: 
   _answersList: []
@@ -1601,7 +1602,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELENA
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -1866,7 +1867,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 136742857}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 624115183}
+        m_TargetAssemblyTypeName: DialogController, Creator
+        m_MethodName: TakeXml
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &136742857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1887,7 +1900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "To afim n\xE3o."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -3402,7 +3415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ei tu, faz uma miss\xE3o pra mim?"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -5757,13 +5770,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4da3e3449752f747ad1ce8ef0fd0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcDialog: {fileID: 109785631}
   painelDialog: {fileID: 1532987515}
   _buttonOpen: {fileID: 1759442791}
   nameNpc: {fileID: 1908542878}
   converseNpc: {fileID: 1044288006}
   imageNpc: {fileID: 948647337}
+  imageNpcQuestion: {fileID: 792171473}
   _painelQuestion: {fileID: 715273039}
   _questionText: {fileID: 327573491}
+  nameNpcQuestion: {fileID: 116893670}
   _answerButtons:
   - {fileID: 1014170446}
   - {fileID: 136742856}
@@ -6733,7 +6749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1196834129, guid: 46a7106840270d84384e64a87d8dd356, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b9fc916caf99d9418fad555369f9a5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8515,7 +8531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1014170447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 624115183}
+        m_TargetAssemblyTypeName: DialogController, Creator
+        m_MethodName: TakeXml
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014170447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8536,7 +8564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Claro, o que precisas ?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -11136,7 +11164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -256}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1407151343
@@ -12104,7 +12132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1532987516
 RectTransform:
   m_ObjectHideFlags: 0
