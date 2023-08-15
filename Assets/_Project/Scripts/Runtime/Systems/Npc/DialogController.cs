@@ -52,12 +52,12 @@ public class DialogController : MonoBehaviour
         _npcDialog = currentNpc;
         painelDialog.SetActive(true);
         converse.Clear();
-        nameNpc.text = _npcDialog._dialog.name;
-        imageNpc.sprite = _npcDialog._dialog.iconNpc;
+        nameNpc.text = _npcDialog.npcBase._dialog.name;
+        imageNpc.sprite = _npcDialog.npcBase._dialog.iconNpc;
 
-        foreach (string talk in _npcDialog._dialog.history)
+        foreach (string talk in _npcDialog.npcBase._dialog.history)
         {
-            converse.Enqueue(FormatText(talk));
+            converse.Enqueue(FormatTextController.FormatText(talk, _npcDialog.npcBase._dialog.name));
         }
 
         for (int i = 1; i > _answerButtons.Length; i--)
@@ -81,7 +81,7 @@ public class DialogController : MonoBehaviour
         }
 
         string t = converse.Dequeue();
-        StartCoroutine(TypewriterMethod(t));
+        StartCoroutine(FormatTextController.TypewriterMethod(t,converseNpc));
     }
 
     public void EndTalk()
@@ -120,32 +120,6 @@ public class DialogController : MonoBehaviour
     public bool CanTalk()
     {
         return painelDialog.activeSelf;
-    }
-
-    private IEnumerator TypewriterMethod(string text)
-    {
-        converseNpc.text = " ";
-
-        foreach (char t in text.ToCharArray())
-        {
-            converseNpc.text += t.ToString();
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    private string FormatText(string text)
-    {
-        string temp = text;
-
-        temp = temp.Replace("npc_name", _npcDialog._dialog.name);
-
-        string color = "<color=#00FF00>";
-        string color2 = "</color>";
-
-        temp = temp.Replace("cor_nova", color);
-        temp = temp.Replace("fim_cor", color2);
-
-        return temp;
     }
 
     public void TakeXml(int value)

@@ -4,19 +4,7 @@ using UnityEngine;
 
 public class NpcDialog : MonoBehaviour
 {
-    public Dialog _dialog;
-
-    private int _indexDialog;
-
-    [SerializeField] private List<Dialog> _dialogs;
-    [SerializeField] private Dialog _endDialog;
-
-    [SerializeField] private bool _allDialog;
-    [SerializeField] private bool _continue;
-    [SerializeField] private string _path;
-    [SerializeField] private string _nameNpcPath;
-    [SerializeField] private string _nameXml;
-
+    public NpcBase npcBase;
 
     [Header("Question System")]
     public Sprite spriteQuestion;
@@ -28,36 +16,36 @@ public class NpcDialog : MonoBehaviour
 
     public bool GetBoolContinue()
     {
-        return _continue;
+        return npcBase._continue;
     }
 
     public bool GetAllDialog()
     {
-        return _allDialog;
+        return npcBase._allDialog;
     }
 
 
     public void SetAllDialog(bool value)
     {
-        _allDialog = value;
+        npcBase._allDialog = value;
     }
 
     private void Start()
     {
-        LoadXMLData(_nameXml);
+        LoadXMLData(npcBase._nameXml);
     }
 
 
     public void NextDialog()
     {
-        if (!_allDialog)
+        if (!npcBase._allDialog)
         {
-            _indexDialog++;
+            npcBase._indexDialog++;
 
-            if (_indexDialog >= _dialogs.Count)
+            if (npcBase._indexDialog >= npcBase._dialogs.Count)
             {
-                _allDialog = true;
-                _dialog = _endDialog;
+                npcBase._allDialog = true;
+                npcBase._dialog = npcBase._endDialog;
                 return;
             }
 
@@ -65,31 +53,31 @@ public class NpcDialog : MonoBehaviour
         }
         else
         {
-            _dialog = _endDialog;
+            npcBase._dialog = npcBase._endDialog;
         }
     }
 
     private void SetupDialog()
     {
-        _dialog.name = _dialogs[_indexDialog].name;
-        _dialog.history = _dialogs[_indexDialog].history;
-        _dialog.iconNpc = _dialogs[_indexDialog].iconNpc;
+        npcBase._dialog.name = npcBase._dialogs[npcBase._indexDialog].name;
+        npcBase._dialog.history = npcBase._dialogs[npcBase._indexDialog].history;
+        npcBase._dialog.iconNpc = npcBase._dialogs[npcBase._indexDialog].iconNpc;
     }
 
     private void LoadXMLData(string xml)
     {
-        _indexDialog = 0;
-        _dialogs.Clear();
+        npcBase._indexDialog = 0;
+        npcBase._dialogs.Clear();
         _nameQuestion = null;
         _question = null;
         _answersList.Clear();
         _targetXml.Clear();
 
-        _endDialog.name = null;
-        _endDialog.history.Clear();
-        _endDialog = new();
+        npcBase._endDialog.name = null;
+        npcBase._endDialog.history.Clear();
+        npcBase._endDialog = new();
 
-        TextAsset xmlData = (TextAsset)Resources.Load(_path + _nameNpcPath + xml);
+        TextAsset xmlData = (TextAsset)Resources.Load("Npc/" + npcBase._nameNpcPath + xml);
         XmlDocument xmlDocument = new();
 
         xmlDocument.LoadXml(xmlData.text);
@@ -100,21 +88,21 @@ public class NpcDialog : MonoBehaviour
         {
             if (node.Name == "dialog")
             {
-                _dialogs.Add(new Dialog());
+                npcBase._dialogs.Add(new Dialog());
                 string nameChar = node.Attributes["name"].Value;
-                _dialogs[i].name = nameChar;
-                _dialogs[i].history = new();
+                npcBase._dialogs[i].name = nameChar;
+                npcBase._dialogs[i].history = new();
 
                 foreach (XmlNode n in node["text"].ChildNodes)
                 {
-                    _dialogs[i].history.Add(n.InnerText);
+                    npcBase._dialogs[i].history.Add(n.InnerText);
                 }
 
                 foreach (XmlNode n in node["image"].ChildNodes)
                 {
                     string imageName = "Sprites/" + n.InnerText;
 
-                    _dialogs[i].iconNpc = Resources.Load<Sprite>(imageName);
+                    npcBase._dialogs[i].iconNpc = Resources.Load<Sprite>(imageName);
                 }
 
                 i++;
@@ -122,18 +110,18 @@ public class NpcDialog : MonoBehaviour
             else if (node.Name == "enddialog")
             {
                 string nameChar = node.Attributes["name"].Value;
-                _endDialog.name = nameChar;
-                _endDialog.history = new();
+                npcBase._endDialog.name = nameChar;
+                npcBase._endDialog.history = new();
 
                 foreach (XmlNode n in node["text"].ChildNodes)
                 {
-                    _endDialog.history.Add(n.InnerText);
+                    npcBase._endDialog.history.Add(n.InnerText);
                 }
 
                 foreach (XmlNode n in node["image"].ChildNodes)
                 {
                     string imageName = "Sprites/" + n.InnerText;
-                    _endDialog.iconNpc = Resources.Load<Sprite>(imageName);
+                    npcBase._endDialog.iconNpc = Resources.Load<Sprite>(imageName);
                 }
             }
             else if (node.Name == "question")

@@ -1525,20 +1525,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7940506835441449babde6d5925a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialog:
-    name: 
-    iconNpc: {fileID: 0}
-    history: []
-  _dialogs: []
-  _endDialog:
-    name: oli
-    iconNpc: {fileID: 0}
-    history: []
-  _allDialog: 0
-  _continue: 1
-  _path: Npc/
-  _nameNpcPath: Oli/
-  _nameXml: Oli-xml
+  npcBase:
+    _dialog:
+      name: 
+      iconNpc: {fileID: 0}
+      history: []
+    _indexDialog: 0
+    _dialogs: []
+    _endDialog:
+      name: 
+      iconNpc: {fileID: 0}
+      history: []
+    _allDialog: 0
+    _continue: 0
+    _nameNpcPath: Oli/
+    _nameXml: Oli-xml
   spriteQuestion: {fileID: 0}
   _nameQuestion: 
   _question: 
@@ -5770,7 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4da3e3449752f747ad1ce8ef0fd0c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcDialog: {fileID: 109785631}
+  _npcDialog: {fileID: 0}
   painelDialog: {fileID: 1532987515}
   _buttonOpen: {fileID: 1759442791}
   nameNpc: {fileID: 1908542878}
