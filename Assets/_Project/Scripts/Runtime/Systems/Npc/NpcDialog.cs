@@ -26,10 +26,18 @@ public class NpcDialog : MonoBehaviour
     {
         dialogController = FindObjectOfType<DialogController>();
         LoadXmlController.LoadXMLData(npcBase._nameXml, npcBase, npcWithQuest);
+
+        npcWithQuest._quests = new bool[2, 2];
+        npcWithQuest._quests[0, 0] = false;
+        npcWithQuest._quests[0, 1] = false;
+        npcWithQuest._quests[1, 0] = false;
+        npcWithQuest._quests[1, 1] = false;
     }
 
     public void NextDialog()
     {
+        print("Quest : " + npcWithQuest._quests[0, 0] + "-" + npcWithQuest._quests[0, 1]);
+
         if (!npcBase._allDialog)
         {
             npcBase._indexDialog++;

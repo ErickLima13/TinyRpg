@@ -24,6 +24,12 @@ public static class LoadXmlController
 
         int i = 0;
 
+        if (xmlDocument["npc"].Attributes["quest"] != null)
+        {
+            int idQuest = int.Parse( xmlDocument["npc"].Attributes["quest"].Value);
+            npcWithQuest._quests[idQuest, 0] = true;
+        }
+
         foreach (XmlNode node in xmlDocument["npc"].ChildNodes)
         {
             if (node.Name == "dialog")
@@ -62,6 +68,23 @@ public static class LoadXmlController
                 {
                     string imageName = "Sprites/" + n.InnerText;
                     npcBase._endDialog.iconNpc = Resources.Load<Sprite>(imageName);
+                }
+            }
+            else if (node.Name == "complete")
+            {
+                string nameChar = node.Attributes["name"].Value;
+                npcWithQuest._questComplete.name = nameChar;
+                npcWithQuest._questComplete.history = new();
+
+                foreach (XmlNode n in node["text"].ChildNodes)
+                {
+                    npcWithQuest._questComplete.history.Add(n.InnerText);
+                }
+
+                foreach (XmlNode n in node["image"].ChildNodes)
+                {
+                    string imageName = "Sprites/" + n.InnerText;
+                    npcWithQuest._questComplete.iconNpc = Resources.Load<Sprite>(imageName);
                 }
             }
             else if (node.Name == "question")

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<npc>
+<npc quest ="0">
 
 	<dialog name = "Oli">
 		<text>
@@ -18,6 +18,15 @@
 
 		<image>oli</image>
 
-	</enddialog>	
+	</enddialog>
+
+	<complete name = "Oli">
+		<text>
+			<txt>boa moça tua mata os bixo mesmo!</txt>
+		</text>
+
+		<image>oli</image>
+
+	</complete>
 	
 </npc>

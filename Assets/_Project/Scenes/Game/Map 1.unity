@@ -1541,6 +1541,10 @@ MonoBehaviour:
     _nameNpcPath: Oli/
     _nameXml: Oli-xml
   npcWithQuest:
+    _questComplete:
+      name: 
+      iconNpc: {fileID: 0}
+      history: []
     spriteQuestion: {fileID: 0}
     _nameQuestion: 
     _question: 
