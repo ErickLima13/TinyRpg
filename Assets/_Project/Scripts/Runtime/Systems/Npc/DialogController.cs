@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,7 +25,6 @@ public class DialogController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameNpcQuestion;
     [SerializeField] private Button[] _answerButtons;
     [SerializeField] private List<TextMeshProUGUI> _answersText = new();
-
 
 
     private void Start()
@@ -81,7 +79,7 @@ public class DialogController : MonoBehaviour
         }
 
         string t = converse.Dequeue();
-        StartCoroutine(FormatTextController.TypewriterMethod(t,converseNpc));
+        StartCoroutine(FormatTextController.TypewriterMethod(t, converseNpc));
     }
 
     public void EndTalk()
@@ -94,12 +92,12 @@ public class DialogController : MonoBehaviour
         }
         else if (_npcDialog.HasQuestion())
         {
-            nameNpcQuestion.text = _npcDialog._nameQuestion;
-            _questionText.text = _npcDialog._question;
-            imageNpcQuestion.sprite = _npcDialog.spriteQuestion;
+            nameNpcQuestion.text = _npcDialog.npcWithQuest._nameQuestion;
+            _questionText.text = _npcDialog.npcWithQuest._question;
+            imageNpcQuestion.sprite = _npcDialog.npcWithQuest.spriteQuestion;
 
             int i = 0;
-            foreach (string a in _npcDialog._answersList)
+            foreach (string a in _npcDialog.npcWithQuest._answersList)
             {
                 _answerButtons[i].gameObject.SetActive(true);
                 _answersText[i].text = a;
@@ -128,6 +126,5 @@ public class DialogController : MonoBehaviour
         _painelQuestion.SetActive(false);
         _npcDialog.ChooseXml(value);
         StartTalk(_npcDialog);
-
     }
 }

@@ -1,17 +1,6 @@
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 [System.Serializable]
-public class Dialog
-{
-    public string name;
-    public Sprite iconNpc;
-    [TextArea]
-    public List<string> history;
-}
-
-[System.Serializable]
-
 public class NpcBase
 {
     public Dialog _dialog;

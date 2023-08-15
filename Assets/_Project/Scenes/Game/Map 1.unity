@@ -1537,14 +1537,15 @@ MonoBehaviour:
       iconNpc: {fileID: 0}
       history: []
     _allDialog: 0
-    _continue: 0
+    _continue: 1
     _nameNpcPath: Oli/
     _nameXml: Oli-xml
-  spriteQuestion: {fileID: 0}
-  _nameQuestion: 
-  _question: 
-  _answersList: []
-  _targetXml: []
+  npcWithQuest:
+    spriteQuestion: {fileID: 0}
+    _nameQuestion: 
+    _question: 
+    _answersList: []
+    _targetXml: []
 --- !u!1 &116893668
 GameObject:
   m_ObjectHideFlags: 0
