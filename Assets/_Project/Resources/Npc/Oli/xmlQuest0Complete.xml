@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<npc>
+
+	<dialog name = "Oli">
+		<text>
+			<txt>Valeu pelas poções</txt>
+		</text>
+
+		<image>oli</image>
+
+	</dialog>
+
+	<question name = "Oli">
+		<text>
+			<txt>Ei tu, faz uma missão pra mim?</txt>
+		</text>
+
+		<answers>
+			<txt name ="xml3">Claro, bora!</txt>
+			<txt name ="xml4">To ocupada.</txt>
+		</answers>
+
+		<image>oli</image>
+
+	</question>
+
+	<enddialog name = "Oli">
+		<text>
+			<txt>até logo Helena.</txt>
+		</text>
+
+		<image>oli</image>
+
+	</enddialog>
+
+</npc>

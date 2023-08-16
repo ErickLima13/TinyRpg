@@ -48,10 +48,13 @@ public class DialogController : MonoBehaviour
     public void StartTalk(NpcDialog currentNpc)
     {
         _npcDialog = currentNpc;
+        _npcDialog.SetAllDialog(false);
         painelDialog.SetActive(true);
         converse.Clear();
         nameNpc.text = _npcDialog.npcBase._dialog.name;
         imageNpc.sprite = _npcDialog.npcBase._dialog.iconNpc;
+
+        currentNpc.npcWithQuest.CheckQuests(currentNpc.npcBase);
 
         foreach (string talk in _npcDialog.npcBase._dialog.history)
         {
@@ -90,7 +93,7 @@ public class DialogController : MonoBehaviour
         {
             StartTalk(_npcDialog);
         }
-        else if (_npcDialog.HasQuestion())
+        else if (_npcDialog.HasQuestion() && _npcDialog.GetAllDialog())
         {
             nameNpcQuestion.text = _npcDialog.npcWithQuest._nameQuestion;
             _questionText.text = _npcDialog.npcWithQuest._question;

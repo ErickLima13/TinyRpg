@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<npc quest ="1">
+
+	<dialog name = "Oli">
+		<text>
+			<txt>Traz uma chave pra mim</txt>
+		</text>
+
+		<image>oli</image>
+
+	</dialog>
+
+	<enddialog name = "Oli">
+		<text>
+			<txt>Traz a chave la</txt>
+		</text>
+
+		<image>oli</image>
+
+	</enddialog>
+
+	<complete name = "Oli">
+		<text>
+			<txt>valeu</txt>
+		</text>
+
+		<image>oli</image>
+
+	</complete>
+	
+</npc>

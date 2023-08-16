@@ -5,8 +5,6 @@ public class NpcDialog : MonoBehaviour
     public NpcBase npcBase;
     public NpcWithQuest npcWithQuest;
 
-    private DialogController dialogController;
-
     public bool GetBoolContinue()
     {
         return npcBase._continue;
@@ -24,8 +22,7 @@ public class NpcDialog : MonoBehaviour
 
     private void Start()
     {
-        dialogController = FindObjectOfType<DialogController>();
-        LoadXmlController.LoadXMLData(npcBase._nameXml, npcBase, npcWithQuest);
+        LoadXmlController.LoadXMLData(npcBase._nameXml, npcBase, npcWithQuest,this);
 
         npcWithQuest._quests = new bool[2, 2];
         npcWithQuest._quests[0, 0] = false;
@@ -36,7 +33,7 @@ public class NpcDialog : MonoBehaviour
 
     public void NextDialog()
     {
-        print("Quest : " + npcWithQuest._quests[0, 0] + "-" + npcWithQuest._quests[0, 1]);
+        npcWithQuest.IsQuestComplete(npcBase,this);
 
         if (!npcBase._allDialog)
         {
@@ -59,7 +56,7 @@ public class NpcDialog : MonoBehaviour
 
     public void ChooseXml(int valueXml)
     {
-        LoadXmlController.LoadXMLData(npcWithQuest._targetXml[valueXml], npcBase, npcWithQuest);
+        LoadXmlController.LoadXMLData(npcWithQuest._targetXml[valueXml], npcBase, npcWithQuest,this);
     }
 
     public bool HasQuestion()

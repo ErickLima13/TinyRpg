@@ -55,8 +55,6 @@ public class Inventory : MonoBehaviour
             panelInventory.SetActive(!panelInventory.activeSelf);
         }
 
-
-
         if (panelInventory.activeSelf)
         {
             Time.timeScale = 0f;
@@ -133,7 +131,7 @@ public class Inventory : MonoBehaviour
     {
         if (item.onlySlot)
         {
-            if (quantityOfItems[item.id] <= 0)
+            if (quantityOfItems[item.id] == 0)
             {
                 items.Remove(item);
                 itemsUsable.Remove(temp);
@@ -149,9 +147,22 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
+    public void RemoveQuantityItems(int quantity,ItemData item)
+    {
+        for (int i = quantity; i > 0; i--)
+        {
+            RemoveItem(item);
+        }
+    }
+
     public bool HasItem(ItemData item)
     {
         return items.Contains(item);
+    }
+
+    public bool HasQuantityItems(ItemData item,int quantity)
+    {
+        return HasItem(item) && quantityOfItems[item.id] >= quantity;
     }
 
     public bool HasSlot()

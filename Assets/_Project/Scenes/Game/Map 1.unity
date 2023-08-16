@@ -1550,6 +1550,16 @@ MonoBehaviour:
     _question: 
     _answersList: []
     _targetXml: []
+    _itemQuest:
+    - {fileID: 11400000, guid: 1e8a68194e9069845a2ebed6288b852b, type: 2}
+    - {fileID: 11400000, guid: 6cca5216e09f588438d112b288fd4c46, type: 2}
+    _itemQuantityQuest: 0200000001000000
+    _endQuest: 0
+    _xmlQuestComplete:
+    - xmlQuest0Complete
+    - xmlQuest1Complete
+    _currentQuest: 0
+    inventory: {fileID: 172932578}
 --- !u!1 &116893668
 GameObject:
   m_ObjectHideFlags: 0
@@ -16314,11 +16324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8198065592529015020, guid: 306992a5d7f930e48b29298f25c8d0b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.798
+      value: -1.612
       objectReference: {fileID: 0}
     - target: {fileID: 8198065592529015020, guid: 306992a5d7f930e48b29298f25c8d0b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.106
       objectReference: {fileID: 0}
     - target: {fileID: 8198065592529015020, guid: 306992a5d7f930e48b29298f25c8d0b9, type: 3}
       propertyPath: m_LocalPosition.z

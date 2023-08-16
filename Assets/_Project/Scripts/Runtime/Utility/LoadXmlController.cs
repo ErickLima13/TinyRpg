@@ -3,8 +3,10 @@ using UnityEngine;
 
 public static class LoadXmlController 
 {
-    public static void LoadXMLData(string xml, NpcBase npcBase, NpcWithQuest npcWithQuest)
+    public static void LoadXMLData(string xml, NpcBase npcBase, NpcWithQuest npcWithQuest,NpcDialog npcDialog)
     {
+        npcDialog.SetAllDialog(false);
+
         npcBase._indexDialog = 0;
         npcBase._dialogs.Clear();
 
@@ -12,6 +14,7 @@ public static class LoadXmlController
         npcWithQuest._question = null;
         npcWithQuest._answersList.Clear();
         npcWithQuest._targetXml.Clear();
+        npcWithQuest._endQuest = false;
 
         npcBase._endDialog.name = null;
         npcBase._endDialog.history.Clear();

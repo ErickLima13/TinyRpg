@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<npc>
+
+	<dialog name = "Oli">
+		<text>
+			<txt>Valeu pela chave</txt>
+		</text>
+
+		<image>oli</image>
+
+	</dialog>
+
+	<enddialog name = "Oli">
+		<text>
+			<txt>até logo Helena.</txt>
+		</text>
+
+		<image>oli</image>
+
+	</enddialog>
+
+</npc>
