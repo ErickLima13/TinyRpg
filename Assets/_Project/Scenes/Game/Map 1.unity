@@ -735,6 +735,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 109785630}
+        m_TargetAssemblyTypeName: StoreNpc, Creator
+        m_MethodName: ClosePanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &49840422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,37 +1542,37 @@ MonoBehaviour:
       name: 
       iconNpc: {fileID: 0}
       history: []
-    _indexDialog: 0
-    _dialogs: []
     _endDialog:
       name: 
       iconNpc: {fileID: 0}
       history: []
+    _dialogs: []
+    _indexDialog: 0
     _allDialog: 0
     _continue: 1
     _nameNpcPath: Oli/
     _nameXml: Oli-xml
   npcWithQuest:
+    inventory: {fileID: 172932578}
     _questComplete:
       name: 
       iconNpc: {fileID: 0}
       history: []
     spriteQuestion: {fileID: 0}
+    _itemQuest:
+    - {fileID: 11400000, guid: 1e8a68194e9069845a2ebed6288b852b, type: 2}
+    - {fileID: 11400000, guid: 6cca5216e09f588438d112b288fd4c46, type: 2}
     _nameQuestion: 
     _question: 
     _answersList: []
     _targetXml: []
-    _itemQuest:
-    - {fileID: 11400000, guid: 1e8a68194e9069845a2ebed6288b852b, type: 2}
-    - {fileID: 11400000, guid: 6cca5216e09f588438d112b288fd4c46, type: 2}
-    _itemQuantityQuest: 0200000001000000
-    _endQuest: 0
     _xmlQuestComplete:
     - xmlQuest0Complete
     - xmlQuest1Complete
-    _currentQuest: 0
-    inventory: {fileID: 172932578}
+    _endQuest: 0
     _returnQuest: 0
+    _itemQuantityQuest: 0200000001000000
+    _currentQuest: 0
 --- !u!1 &116893668
 GameObject:
   m_ObjectHideFlags: 0

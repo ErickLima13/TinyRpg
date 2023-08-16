@@ -4,18 +4,16 @@
 public class NpcBase
 {
     public Dialog _dialog;
+    public Dialog _endDialog;
+    public List<Dialog> _dialogs;
 
     public int _indexDialog;
-
-    public List<Dialog> _dialogs;
-    public Dialog _endDialog;
 
     public bool _allDialog;
     public bool _continue;
 
     public string _nameNpcPath;
     public string _nameXml;
-
 
     public void ResetBase()
     {
@@ -26,7 +24,7 @@ public class NpcBase
         _endDialog = new();
     }
 
-    public  void SetupDialog()
+    public void SetupDialog()
     {
         _dialog.name = _dialogs[_indexDialog].name;
         _dialog.history = _dialogs[_indexDialog].history;

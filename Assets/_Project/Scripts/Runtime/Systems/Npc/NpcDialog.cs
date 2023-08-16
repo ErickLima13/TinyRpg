@@ -33,7 +33,6 @@ public class NpcDialog : MonoBehaviour
 
     public void NextDialog()
     {
-
         if (npcWithQuest.IsQuestComplete(npcBase, this))
         {
             return;
@@ -58,8 +57,6 @@ public class NpcDialog : MonoBehaviour
                 npcBase._dialog = npcBase._endDialog;
             }
         }
-
-       
     }
 
     public void ChooseXml(int valueXml)

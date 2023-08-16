@@ -42,6 +42,7 @@ public class StoreNpc : MonoBehaviour
 
     private void EndTalkOpenStore()
     {
+        GameStateController.ChangeState(GameState.Store);
         _panelStore.SetActive(true);
         _inventory.OpenOrCloseInventory(true);
         _buttonOpen.SetActive(false);
@@ -82,4 +83,8 @@ public class StoreNpc : MonoBehaviour
         _dialogController.OnEndDialog -= EndTalkOpenStore;
     }
 
+    public void ClosePanel()
+    {
+        GameStateController.StateGameplay();
+    }
 }

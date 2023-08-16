@@ -18,7 +18,10 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
-        UpdateAnimator();
+        if (GameStateController._currentState == GameState.Gameplay)
+        {
+            UpdateAnimator();
+        }
     }
 
     private bool Walking()
@@ -57,13 +60,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void UpdateAnimator()
     {
-        if (Time.timeScale != 0)
-        {
-            _animator.SetBool("Walk", Walking());
-            WalkingUp();
-            WalkSideways();
-            Attack();
-        }
+        _animator.SetBool("Walk", Walking());
+        WalkingUp();
+        WalkSideways();
+        Attack();
     }
 
     private void Attack()

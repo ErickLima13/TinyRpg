@@ -4,31 +4,26 @@ using UnityEngine;
 [System.Serializable]
 public class NpcWithQuest
 {
+    public Inventory inventory;
+
     public Dialog _questComplete;
 
     public Sprite spriteQuestion;
 
-    public string _nameQuestion;
-    public string _question;
-
-    public List<string> _answersList;
-    public List<string> _targetXml;
-
-    public bool[,] _quests;
-
     public ItemData[] _itemQuest;
 
-    public int[] _itemQuantityQuest;
-
-    public bool _endQuest;
-
+    public string _nameQuestion;
+    public string _question;
+    public List<string> _answersList;
+    public List<string> _targetXml;
     public string[] _xmlQuestComplete;
 
-    public int _currentQuest;
-
-    public Inventory inventory;
-
+    public bool[,] _quests;
+    public bool _endQuest;
     public bool _returnQuest;
+
+    public int[] _itemQuantityQuest;
+    public int _currentQuest;
 
     public void ResetQuest()
     {
@@ -65,8 +60,7 @@ public class NpcWithQuest
         {
             if (_quests[i, 0] == true && _quests[i, 1] == false)
             {
-                Debug.Log("peguei a quest");
-
+                // Debug.Log("peguei a quest");
                 _currentQuest = i;
 
                 if (_itemQuest[_currentQuest].onlySlot)
@@ -84,7 +78,6 @@ public class NpcWithQuest
                     }
                 }
 
-
                 break;
             }
         }
@@ -96,6 +89,5 @@ public class NpcWithQuest
         _quests[_currentQuest, 1] = true;
         _endQuest = true;
         inventory.RemoveQuantityItems(_itemQuantityQuest[_currentQuest], _itemQuest[_currentQuest]);
-        Debug.Log("tenho o item");
     }
 }

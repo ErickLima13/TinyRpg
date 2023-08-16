@@ -47,6 +47,8 @@ public class DialogController : MonoBehaviour
 
     public void StartTalk(NpcDialog currentNpc)
     {
+        GameStateController.ChangeState(GameState.Dialog);
+
         _npcDialog = currentNpc;
         _npcDialog.SetAllDialog(false);
         painelDialog.SetActive(true);
@@ -122,6 +124,11 @@ public class DialogController : MonoBehaviour
             {
                 _buttonOpen.SetActive(false);
                 OnEndDialog?.Invoke();
+            }
+
+            if (!painelDialog.activeSelf && !_painelQuestion.activeSelf)
+            {
+                GameStateController.ChangeState(GameState.Gameplay);
             }
         }
     }

@@ -55,14 +55,13 @@ public class Inventory : MonoBehaviour
             panelInventory.SetActive(!panelInventory.activeSelf);
         }
 
-        if (panelInventory.activeSelf)
+        if (!panelInventory.activeSelf)
         {
-            Time.timeScale = 0f;
+            OnCloseInventoryEvent?.Invoke();
         }
         else
         {
-            OnCloseInventoryEvent?.Invoke();
-            Time.timeScale = 1;
+            GameStateController.ChangeState(GameState.Inventory);
         }
     }
 

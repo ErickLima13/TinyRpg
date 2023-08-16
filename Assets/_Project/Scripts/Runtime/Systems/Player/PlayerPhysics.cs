@@ -26,7 +26,11 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        if (GameStateController._currentState == GameState.Gameplay)
+        {
+            Movement();
+        }
+       
     }
 
     private void Movement()
