@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<npc return="Oli-xml">
+<npc return="xmlQuest0Complete">
 
 	<dialog name = "Oli">
 		<text>
@@ -13,7 +13,7 @@
 
 	<enddialog name = "Oli">
 		<text>
-			<txt>preguiçosa</txt>
+			<txt>tchau preguiçosa</txt>
 		</text>
 
 		<image>oli</image>

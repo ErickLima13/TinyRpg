@@ -1,5 +1,4 @@
-﻿using Codice.CM.Client.Differences.Merge;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -20,7 +19,7 @@ public class NpcWithQuest
     public ItemData[] _itemQuest;
 
     public int[] _itemQuantityQuest;
-    
+
     public bool _endQuest;
 
     public string[] _xmlQuestComplete;
@@ -29,11 +28,31 @@ public class NpcWithQuest
 
     public Inventory inventory;
 
-    public bool IsQuestComplete(NpcBase npcBase,NpcDialog npcDialog)
+    public bool _returnQuest;
+
+    public void ResetQuest()
+    {
+        _nameQuestion = null;
+        _question = null;
+        _answersList.Clear();
+        _targetXml.Clear();
+        _endQuest = false;
+        _returnQuest = false;
+    }
+
+    public void AddQuestValues(string nameValue, string questionValue)
+    {
+        _nameQuestion = nameValue;
+        _question = questionValue;
+        _answersList = new();
+        _targetXml = new();
+    }
+
+    public bool IsQuestComplete(NpcBase npcBase, NpcDialog npcDialog)
     {
         if (_endQuest)
         {
-            LoadXmlController.LoadXMLData(_xmlQuestComplete[_currentQuest], npcBase, this,npcDialog);       
+            LoadXmlController.LoadXMLData(_xmlQuestComplete[_currentQuest], npcBase, this, npcDialog);
             return true;
         }
 
@@ -54,36 +73,29 @@ public class NpcWithQuest
                 {
                     if (inventory.HasQuantityItems(_itemQuest[_currentQuest], _itemQuantityQuest[_currentQuest]))
                     {
-                        npcBase._dialog = _questComplete;
-
-                        _quests[i, 1] = true;
-
-                        inventory.RemoveQuantityItems(_itemQuantityQuest[_currentQuest], _itemQuest[_currentQuest]);
-
-                        _endQuest = true;
-
-                        Debug.Log("tenho o item");
+                        QuestComplete(npcBase);
                     }
                 }
                 else
                 {
                     if (inventory.HasItem(_itemQuest[_currentQuest]))
                     {
-                        npcBase._dialog = _questComplete;
-
-                        _quests[i, 1] = true;
-
-                        inventory.RemoveItem(_itemQuest[_currentQuest]);
-
-                        _endQuest = true;
-
-                        Debug.Log("tenho o item");
+                        QuestComplete(npcBase);
                     }
                 }
-              
+
 
                 break;
             }
         }
+    }
+
+    private void QuestComplete(NpcBase npc)
+    {
+        npc._dialog = _questComplete;
+        _quests[_currentQuest, 1] = true;
+        _endQuest = true;
+        inventory.RemoveQuantityItems(_itemQuantityQuest[_currentQuest], _itemQuest[_currentQuest]);
+        Debug.Log("tenho o item");
     }
 }

@@ -1,24 +1,14 @@
 using System.Xml;
 using UnityEngine;
 
-public static class LoadXmlController 
+public static class LoadXmlController
 {
-    public static void LoadXMLData(string xml, NpcBase npcBase, NpcWithQuest npcWithQuest,NpcDialog npcDialog)
+    public static void LoadXMLData(string xml, NpcBase npcBase, NpcWithQuest npcWithQuest, NpcDialog npcDialog)
     {
         npcDialog.SetAllDialog(false);
 
-        npcBase._indexDialog = 0;
-        npcBase._dialogs.Clear();
-
-        npcWithQuest._nameQuestion = null;
-        npcWithQuest._question = null;
-        npcWithQuest._answersList.Clear();
-        npcWithQuest._targetXml.Clear();
-        npcWithQuest._endQuest = false;
-
-        npcBase._endDialog.name = null;
-        npcBase._endDialog.history.Clear();
-        npcBase._endDialog = new();
+        npcBase.ResetBase();
+        npcWithQuest.ResetQuest();
 
         TextAsset xmlData = (TextAsset)Resources.Load("Npc/" + npcBase._nameNpcPath + xml);
         XmlDocument xmlDocument = new();
@@ -29,8 +19,14 @@ public static class LoadXmlController
 
         if (xmlDocument["npc"].Attributes["quest"] != null)
         {
-            int idQuest = int.Parse( xmlDocument["npc"].Attributes["quest"].Value);
+            int idQuest = int.Parse(xmlDocument["npc"].Attributes["quest"].Value);
             npcWithQuest._quests[idQuest, 0] = true;
+        }
+
+        if (xmlDocument["npc"].Attributes["return"] != null)
+        {
+            npcWithQuest._returnQuest = true;
+            npcBase._nameXml = xmlDocument["npc"].Attributes["return"].Value;
         }
 
         foreach (XmlNode node in xmlDocument["npc"].ChildNodes)
@@ -92,10 +88,11 @@ public static class LoadXmlController
             }
             else if (node.Name == "question")
             {
-                npcWithQuest._nameQuestion = node.Attributes["name"].Value;
-                npcWithQuest._question = node["text"].FirstChild.InnerText;
-                npcWithQuest._answersList = new();
-                npcWithQuest._targetXml = new();
+                string a = node.Attributes["name"].Value;
+                string b = node["text"].FirstChild.InnerText;
+
+                npcWithQuest.AddQuestValues(a, b);
+
                 foreach (XmlNode n in node["answers"].ChildNodes)
                 {
                     npcWithQuest._answersList.Add(n.InnerText);
@@ -111,14 +108,6 @@ public static class LoadXmlController
             }
         }
 
-        SetupDialog(npcBase);
-
-    }
-
-    public static void SetupDialog(NpcBase npcBase)
-    {
-        npcBase._dialog.name = npcBase._dialogs[npcBase._indexDialog].name;
-        npcBase._dialog.history = npcBase._dialogs[npcBase._indexDialog].history;
-        npcBase._dialog.iconNpc = npcBase._dialogs[npcBase._indexDialog].iconNpc;
+        npcBase.SetupDialog();
     }
 }

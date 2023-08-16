@@ -93,28 +93,36 @@ public class DialogController : MonoBehaviour
         {
             StartTalk(_npcDialog);
         }
-        else if (_npcDialog.HasQuestion() && _npcDialog.GetAllDialog())
-        {
-            nameNpcQuestion.text = _npcDialog.npcWithQuest._nameQuestion;
-            _questionText.text = _npcDialog.npcWithQuest._question;
-            imageNpcQuestion.sprite = _npcDialog.npcWithQuest.spriteQuestion;
-
-            int i = 0;
-            foreach (string a in _npcDialog.npcWithQuest._answersList)
-            {
-                _answerButtons[i].gameObject.SetActive(true);
-                _answersText[i].text = a;
-                i++;
-            }
-
-            _painelQuestion.SetActive(true);
-
-        }
         else
         {
+
             painelDialog.SetActive(false);
-            _buttonOpen.SetActive(false);
-            OnEndDialog?.Invoke();
+
+            if (_npcDialog.HasQuestion())
+            {
+                nameNpcQuestion.text = _npcDialog.npcWithQuest._nameQuestion;
+                _questionText.text = _npcDialog.npcWithQuest._question;
+                imageNpcQuestion.sprite = _npcDialog.npcWithQuest.spriteQuestion;
+
+                int i = 0;
+                foreach (string a in _npcDialog.npcWithQuest._answersList)
+                {
+                    _answerButtons[i].gameObject.SetActive(true);
+                    _answersText[i].text = a;
+                    i++;
+                }
+
+                _painelQuestion.SetActive(true);
+            }
+            else if (_npcDialog.npcWithQuest._returnQuest)
+            {
+                LoadXmlController.LoadXMLData(_npcDialog.npcBase._nameXml, _npcDialog.npcBase, _npcDialog.npcWithQuest, _npcDialog);
+            }
+            else
+            {
+                _buttonOpen.SetActive(false);
+                OnEndDialog?.Invoke();
+            }
         }
     }
 

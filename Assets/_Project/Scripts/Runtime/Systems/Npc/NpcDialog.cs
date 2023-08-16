@@ -33,25 +33,33 @@ public class NpcDialog : MonoBehaviour
 
     public void NextDialog()
     {
-        npcWithQuest.IsQuestComplete(npcBase,this);
 
-        if (!npcBase._allDialog)
+        if (npcWithQuest.IsQuestComplete(npcBase, this))
         {
-            npcBase._indexDialog++;
-
-            if (npcBase._indexDialog >= npcBase._dialogs.Count)
-            {
-                npcBase._allDialog = true;
-                npcBase._dialog = npcBase._endDialog;
-                return;
-            }
-
-            LoadXmlController.SetupDialog(npcBase);
+            return;
         }
         else
         {
-            npcBase._dialog = npcBase._endDialog;
+            if (!npcBase._allDialog)
+            {
+                npcBase._indexDialog++;
+
+                if (npcBase._indexDialog >= npcBase._dialogs.Count)
+                {
+                    npcBase._allDialog = true;
+                    npcBase._dialog = npcBase._endDialog;
+                    return;
+                }
+
+                npcBase.SetupDialog();
+            }
+            else
+            {
+                npcBase._dialog = npcBase._endDialog;
+            }
         }
+
+       
     }
 
     public void ChooseXml(int valueXml)
