@@ -12,6 +12,8 @@ public class PlayerPhysics : MonoBehaviour
 
     public float _speed;
 
+    public bool isLeft;
+
     [SerializeField] private Transform _rayPos;
     [SerializeField] private LayerMask _doorLayer;
     [SerializeField] private LayerMask _emptyLayer;
@@ -60,17 +62,19 @@ public class PlayerPhysics : MonoBehaviour
         {
             _playerAttack.idPrefab = 2;
             transform.localScale = new(-1, 1, 1);
+            isLeft = true;
         }
         else if (_inputs.x > 0)
         {
             _playerAttack.idPrefab = 2;
             transform.localScale = Vector3.one;
+            isLeft = false;
         }
     }
 
     public RaycastHit2D IsEmpty()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirection, 0.27f, _emptyLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirection, 0.25f, _emptyLayer);
         Debug.DrawRay(transform.position, _rayDirection * 0.27f,Color.white);
 
         if (hit)

@@ -2296,6 +2296,7 @@ MonoBehaviour:
   _inputs: {x: 0, y: 0}
   _rayDirection: {x: 0, y: 0}
   _speed: 0.7
+  isLeft: 0
   _rayPos: {fileID: 2077896124}
   _doorLayer:
     serializedVersion: 2

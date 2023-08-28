@@ -152,7 +152,7 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
-    public void RemoveQuantityItems(int quantity,ItemData item)
+    public void RemoveQuantityItems(int quantity, ItemData item)
     {
         for (int i = quantity; i > 0; i--)
         {
@@ -165,7 +165,7 @@ public class Inventory : MonoBehaviour
         return items.Contains(item);
     }
 
-    public bool HasQuantityItems(ItemData item,int quantity)
+    public bool HasQuantityItems(ItemData item, int quantity)
     {
         return HasItem(item) && quantityOfItems[item.id] >= quantity;
     }
@@ -211,13 +211,40 @@ public class Inventory : MonoBehaviour
 
     public void ButtonDrop()
     {
+        Vector3 targetPos = Vector3.zero;
+        float x = 0;
+        float y = 0;
+
         if (!playerPhysics.IsEmpty())
         {
-            Instantiate(temp.itemPrefab, transform.position + new Vector3(0, -0.35f, 0), transform.localRotation);
+            switch (playerPhysics.GetIdDirection())
+            {
+                case 0:
+                    x = 0;
+                    y = 0.15f;
+                    break;
+                case 1:
+                    x = 0;
+                    y = -0.25f;
+                    break;
+                case 2:
+                    if (playerPhysics.isLeft)
+                    {
+                        x = -0.15f;                        
+                    }
+                    else
+                    {
+                        x = 0.15f;
+                    }
+                    y = -0.1f;
+                    break;
+            }
+
+            targetPos = new Vector3(x, y, 0);
+
+            Instantiate(temp.itemPrefab, transform.position + targetPos, transform.localRotation);
             RemoveItem(temp);
         }
-
-        
     }
 
     public void ButtonConfirm()
