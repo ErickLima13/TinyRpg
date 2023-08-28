@@ -8,6 +8,8 @@ public class PlayerPhysics : MonoBehaviour
 
     public Vector2 _inputs;
 
+    public Vector2 _rayDirection;
+
     public float _speed;
 
     [SerializeField] private Transform _rayPos;
@@ -27,6 +29,19 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
+        _inputs.x = Input.GetAxisRaw("Horizontal");
+        _inputs.y = Input.GetAxisRaw("Vertical");
+
+        if (_inputs.x != 0)
+        {
+            _rayDirection.x = _inputs.x;
+        }
+
+        if (_inputs.y != 0)
+        {
+            _rayDirection.y = _inputs.y;
+        }
+
         if (GameStateController._currentState == GameState.Gameplay)
         {
             Movement();
@@ -35,11 +50,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private void Movement()
     {
-        _inputs.x = Input.GetAxisRaw("Horizontal");
-        _inputs.y = Input.GetAxisRaw("Vertical");
-
         _playerRb.velocity = _inputs * _speed;
-
         Flip();
     }
 
@@ -59,8 +70,8 @@ public class PlayerPhysics : MonoBehaviour
 
     public RaycastHit2D IsEmpty()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _inputs, 0.27f, _emptyLayer);
-        Debug.DrawRay(transform.position,_inputs * 0.27f,Color.white);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _rayDirection, 0.27f, _emptyLayer);
+        Debug.DrawRay(transform.position, _rayDirection * 0.27f,Color.white);
 
         if (hit)
         {
@@ -68,5 +79,10 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         return hit;
+    }
+
+    public int GetIdDirection()
+    {
+        return _playerAttack.idPrefab;
     }
 }
