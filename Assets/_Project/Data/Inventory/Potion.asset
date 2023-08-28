@@ -19,3 +19,4 @@ MonoBehaviour:
   usable: 1
   missionItem: 0
   icon: {fileID: -2096176316, guid: ae6b33a6e5a06154d983856588bd5f6e, type: 3}
+  itemPrefab: {fileID: 4101238020322068746, guid: 5cdc6c122d311c947bd688a7993d6d8f, type: 3}

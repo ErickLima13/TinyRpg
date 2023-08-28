@@ -12,6 +12,7 @@ public class PlayerPhysics : MonoBehaviour
 
     [SerializeField] private Transform _rayPos;
     [SerializeField] private LayerMask _doorLayer;
+    [SerializeField] private LayerMask _emptyLayer;
 
     private void Initialization()
     {
@@ -29,8 +30,7 @@ public class PlayerPhysics : MonoBehaviour
         if (GameStateController._currentState == GameState.Gameplay)
         {
             Movement();
-        }
-       
+        }     
     }
 
     private void Movement()
@@ -55,5 +55,18 @@ public class PlayerPhysics : MonoBehaviour
             _playerAttack.idPrefab = 2;
             transform.localScale = Vector3.one;
         }
+    }
+
+    public RaycastHit2D IsEmpty()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _inputs, 0.27f, _emptyLayer);
+        Debug.DrawRay(transform.position,_inputs * 0.27f,Color.white);
+
+        if (hit)
+        {
+            print(hit.transform.name);
+        }
+
+        return hit;
     }
 }

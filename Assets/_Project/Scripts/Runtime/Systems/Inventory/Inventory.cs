@@ -29,11 +29,14 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private int _coins;
 
+    private PlayerPhysics playerPhysics;
+
     private void Start()
     {
         slots = slotsGroup.GetComponentsInChildren<Slot>();
         UpdateInventory();
         panelInventory.SetActive(false);
+        playerPhysics = GetComponent<PlayerPhysics>();
     }
 
     private void Update()
@@ -58,6 +61,7 @@ public class Inventory : MonoBehaviour
         if (!panelInventory.activeSelf)
         {
             OnCloseInventoryEvent?.Invoke();
+            GameStateController.ChangeState(GameState.Gameplay);
         }
         else
         {
@@ -128,6 +132,8 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
+        temp = null;
+
         if (item.onlySlot)
         {
             if (quantityOfItems[item.id] == 0)
@@ -201,6 +207,17 @@ public class Inventory : MonoBehaviour
         {
             panelConfirm.PanelConfirmRemove(temp);
         }
+    }
+
+    public void ButtonDrop()
+    {
+        if (!playerPhysics.IsEmpty())
+        {
+            Instantiate(temp.itemPrefab, transform.position + new Vector3(0, -0.35f, 0), transform.localRotation);
+            RemoveItem(temp);
+        }
+
+        
     }
 
     public void ButtonConfirm()

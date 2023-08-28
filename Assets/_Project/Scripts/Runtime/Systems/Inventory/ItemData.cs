@@ -10,6 +10,7 @@ public class ItemData : ScriptableObject
     public bool usable;
     public bool missionItem;
     public Sprite icon;
+    public GameObject itemPrefab;
 
     public IUsableItem usableItem;
 
