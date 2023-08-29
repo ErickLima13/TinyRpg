@@ -14,6 +14,8 @@ public class Slot : MonoBehaviour
 
     [SerializeField] private Button _removeButton;
 
+    [SerializeField] private bool isStorage;
+
 
     private void Start()
     {

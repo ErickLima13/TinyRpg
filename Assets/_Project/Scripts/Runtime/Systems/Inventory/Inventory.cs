@@ -2,21 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : InventoryBase
 {
     public event Action OnCloseInventoryEvent;
 
-    [SerializeField] private GameObject panelInventory;
-
-    [SerializeField] private Transform slotsGroup;
-
-    [SerializeField] private Slot[] slots;
-
-    [SerializeField] private List<ItemData> items;
-    [SerializeField] private List<ItemData> itemsUsable;
-
-    public int[] quantityOfItems;
-
+    [Header("Inventory")]
     [SerializeField] private int keyId;
 
     [SerializeField] private string[] KeyCodes;
@@ -31,11 +21,10 @@ public class Inventory : MonoBehaviour
 
     private PlayerPhysics playerPhysics;
 
-    private void Start()
-    {
-        slots = slotsGroup.GetComponentsInChildren<Slot>();
+    public override void Start()
+    {   
+        base.Start();
         UpdateInventory();
-        panelInventory.SetActive(false);
         playerPhysics = GetComponent<PlayerPhysics>();
     }
 
@@ -55,10 +44,10 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            panelInventory.SetActive(!panelInventory.activeSelf);
+            panel.SetActive(!panel.activeSelf);
         }
 
-        if (!panelInventory.activeSelf)
+        if (!panel.activeSelf)
         {
             OnCloseInventoryEvent?.Invoke();
             GameStateController.ChangeState(GameState.Gameplay);
@@ -82,7 +71,7 @@ public class Inventory : MonoBehaviour
 
     private void UseItemInventory()
     {
-        if (Input.GetKeyDown(KeyCodes[keyId]) && panelInventory.activeSelf)
+        if (Input.GetKeyDown(KeyCodes[keyId]) && panel.activeSelf)
         {
             if (SameID(keyId))
             {
@@ -266,7 +255,7 @@ public class Inventory : MonoBehaviour
 
     public void OpenOrCloseInventory(bool value)
     {
-        panelInventory.SetActive(value);
+        panel.SetActive(value);
     }
 
     public bool HasCoins(ItemData item)
