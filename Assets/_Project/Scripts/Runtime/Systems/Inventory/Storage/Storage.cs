@@ -21,7 +21,12 @@ public class Storage : InventoryBase
 
         foreach (Slot s in _inventory.slots)
         {
-            s.EnableDisableRemoveButton(false);
+            if (s.HasItem())
+            {
+                s.EnableDisableRemoveButton(!value);
+            }
+            
+            
         }
     }
 

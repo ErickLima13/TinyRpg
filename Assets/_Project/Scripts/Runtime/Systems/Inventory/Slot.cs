@@ -88,4 +88,9 @@ public class Slot : MonoBehaviour
     {
         _removeButton?.gameObject.SetActive(enabled);
     }
+
+    public bool HasItem()
+    {
+        return _item != null;
+    }
 }
