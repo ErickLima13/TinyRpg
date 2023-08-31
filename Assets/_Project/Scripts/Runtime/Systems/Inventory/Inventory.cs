@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : InventoryBase
@@ -22,7 +21,7 @@ public class Inventory : InventoryBase
     private PlayerPhysics playerPhysics;
 
     public override void Start()
-    {   
+    {
         base.Start();
         UpdateInventory();
         playerPhysics = GetComponent<PlayerPhysics>();
@@ -42,19 +41,14 @@ public class Inventory : InventoryBase
 
     private void OpenCloseInventory()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (GameStateController._currentState == GameState.Chest)
         {
-            panel.SetActive(!panel.activeSelf);
+            return;
         }
 
-        if (!panel.activeSelf)
+        if (Input.GetButtonDown("Cancel"))
         {
-            OnCloseInventoryEvent?.Invoke();
-            GameStateController.ChangeState(GameState.Gameplay);
-        }
-        else
-        {
-            GameStateController.ChangeState(GameState.Inventory);
+            OpenOrCloseInventory(!panel.activeSelf);
         }
     }
 
@@ -77,21 +71,6 @@ public class Inventory : InventoryBase
             {
                 temp.UseItem();
                 RemoveItem(temp);
-            }
-        }
-    }
-
-    private void UpdateInventory()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (i < items.Count)
-            {
-                slots[i].AddIcon(items[i]);
-            }
-            else
-            {
-                slots[i].ClearIcon();
             }
         }
     }
@@ -219,7 +198,7 @@ public class Inventory : InventoryBase
                 case 2:
                     if (playerPhysics.isLeft)
                     {
-                        x = -0.15f;                        
+                        x = -0.15f;
                     }
                     else
                     {
@@ -256,6 +235,16 @@ public class Inventory : InventoryBase
     public void OpenOrCloseInventory(bool value)
     {
         panel.SetActive(value);
+
+        if (!value)
+        {
+            OnCloseInventoryEvent?.Invoke();
+            GameStateController.ChangeState(GameState.Gameplay);
+        }
+        else
+        {
+            GameStateController.ChangeState(GameState.Inventory);
+        }
     }
 
     public bool HasCoins(ItemData item)

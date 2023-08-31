@@ -31,11 +31,11 @@ public class Slot : MonoBehaviour
 
         if (itemData.missionItem)
         {
-            _removeButton?.gameObject.SetActive(false);
+            EnableDisableRemoveButton(false);
         }
         else
         {
-            _removeButton?.gameObject.SetActive(true);
+            EnableDisableRemoveButton(true);
         }
 
         if (itemData.onlySlot)
@@ -55,15 +55,25 @@ public class Slot : MonoBehaviour
         _quantityText.gameObject.SetActive(false);
         _iconItem.sprite = null;
         _iconItem.enabled = false;
-        _removeButton?.gameObject.SetActive(false);
+        EnableDisableRemoveButton(false);
     }
 
     public void UseItemButton()
     {
-        if (_item != null && _item.usable)
+        if (GameStateController._currentState != GameState.Chest)
         {
-            _inventory.ClickItem(_item, false);
+            if (_item != null && _item.usable)
+            {
+                _inventory.ClickItem(_item, false);
+            }
         }
+        else if(GameStateController._currentState == GameState.Chest)
+        {
+            print("ADICIONA ITEM");
+        }
+        
+
+
     }
 
     public void RemoveItemButton()
@@ -72,6 +82,10 @@ public class Slot : MonoBehaviour
         {
             _inventory.ClickItem(_item, true);
         }
+    }
 
+    public void EnableDisableRemoveButton(bool enabled)
+    {
+        _removeButton?.gameObject.SetActive(enabled);
     }
 }

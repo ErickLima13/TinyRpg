@@ -5,7 +5,8 @@ public enum GameState
     Gameplay,
     Dialog,
     Store,
-    Inventory
+    Inventory,
+    Chest
 }
 
 public static class GameStateController
