@@ -24,12 +24,26 @@ public class Storage : InventoryBase
             if (s.HasItem())
             {
                 s.EnableDisableRemoveButton(!value);
-            }
-            
-            
+            } 
         }
     }
 
-  
+    public void PassItemToStorage(ItemData item)
+    {
+        temp = item;
+
+        if (HasSlot())
+        {
+            TakeItem(temp);    
+        }
+
+        if (temp.usable)
+        {
+            AddItemUsable(temp);
+        } 
+    }
+
+
+
 
 }

@@ -2480,12 +2480,12 @@ MonoBehaviour:
   slots: []
   items: []
   itemsUsable: []
+  temp: {fileID: 0}
   quantityOfItems: 0000000001000000
   keyId: 0
   KeyCodes:
   - e
   - q
-  temp: {fileID: 0}
   panelConfirm: {fileID: 1245871637}
   canRemove: 0
   _coins: 100
@@ -2506,6 +2506,7 @@ MonoBehaviour:
   slots: []
   items: []
   itemsUsable: []
+  temp: {fileID: 0}
   quantityOfItems: 0000000000000000
 --- !u!1001 &172994464
 PrefabInstance:

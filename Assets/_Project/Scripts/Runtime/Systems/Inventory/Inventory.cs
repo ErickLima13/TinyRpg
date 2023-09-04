@@ -10,8 +10,6 @@ public class Inventory : InventoryBase
 
     [SerializeField] private string[] KeyCodes;
 
-    [SerializeField] private ItemData temp;
-
     [SerializeField] private PanelConfirm panelConfirm;
 
     [SerializeField] private bool canRemove;
@@ -75,51 +73,6 @@ public class Inventory : InventoryBase
         }
     }
 
-    public void TakeItem(ItemData item)
-    {
-        if (!item.onlySlot)
-        {
-            items.Add(item);
-        }
-        else
-        {
-            if (!HasItem(item))
-            {
-                quantityOfItems[item.id] = item.quantity;
-                items.Add(item);
-            }
-            else
-            {
-                quantityOfItems[item.id] += item.quantity;
-
-            }
-        }
-
-        UpdateInventory();
-    }
-
-    public void RemoveItem(ItemData item)
-    {
-        temp = null;
-
-        if (item.onlySlot)
-        {
-            if (quantityOfItems[item.id] == 0)
-            {
-                items.Remove(item);
-                itemsUsable.Remove(temp);
-            }
-
-            quantityOfItems[item.id] -= item.quantity;
-        }
-        else
-        {
-            items.Remove(item);
-        }
-
-        UpdateInventory();
-    }
-
     public void RemoveQuantityItems(int quantity, ItemData item)
     {
         for (int i = quantity; i > 0; i--)
@@ -128,24 +81,9 @@ public class Inventory : InventoryBase
         }
     }
 
-    public bool HasItem(ItemData item)
-    {
-        return items.Contains(item);
-    }
-
     public bool HasQuantityItems(ItemData item, int quantity)
     {
         return HasItem(item) && quantityOfItems[item.id] >= quantity;
-    }
-
-    public bool HasSlot()
-    {
-        return items.Count < slots.Length;
-    }
-
-    public void AddItemUsable(ItemData item)
-    {
-        itemsUsable.Add(item);
     }
 
     public bool SameID(int value)
@@ -212,6 +150,7 @@ public class Inventory : InventoryBase
 
             Instantiate(temp.itemPrefab, transform.position + targetPos, transform.localRotation);
             RemoveItem(temp);
+            GameStateController.ChangeState(GameState.Gameplay);
         }
     }
 
@@ -226,9 +165,11 @@ public class Inventory : InventoryBase
         }
         else
         {
-            temp.UseItem();
             RemoveItem(temp);
+            temp.UseItem();
         }
+
+        
 
     }
 

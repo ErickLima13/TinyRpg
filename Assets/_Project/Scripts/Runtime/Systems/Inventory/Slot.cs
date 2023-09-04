@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     private Inventory _inventory;
+    private Storage _storage;
 
     [SerializeField] private ItemData _item;
 
@@ -21,6 +22,7 @@ public class Slot : MonoBehaviour
     {
         _quantityText.gameObject.SetActive(false);
         _inventory = FindObjectOfType<Inventory>();
+        _storage = FindObjectOfType<Storage>();
     }
 
     public void AddIcon(ItemData itemData)
@@ -41,7 +43,15 @@ public class Slot : MonoBehaviour
         if (itemData.onlySlot)
         {
             _quantityText.gameObject.SetActive(true);
-            _quantityText.text = "x" + _inventory.quantityOfItems[itemData.id].ToString();
+
+            if (isStorage)
+            {
+                _quantityText.text = "x" + _storage.quantityOfItems[itemData.id].ToString();
+            }
+            else
+            {
+                _quantityText.text = "x" + _inventory.quantityOfItems[itemData.id].ToString();
+            }
         }
         else
         {
@@ -69,11 +79,24 @@ public class Slot : MonoBehaviour
         }
         else if(GameStateController._currentState == GameState.Chest)
         {
-            print("ADICIONA ITEM");
+            // chamar metodo no storage pra adicionar item no storage
+
+            if (!isStorage)
+            {
+                _storage.PassItemToStorage(_item);
+                _inventory.RemoveItem(_item);
+
+
+                print("ADICIONA ITEM");
+            }
+            else
+            {
+                _storage.RemoveItem(_item);
+                _inventory.TakeItem(_item);
+            }
+
+            
         }
-        
-
-
     }
 
     public void RemoveItemButton()
