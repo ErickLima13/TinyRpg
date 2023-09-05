@@ -77,25 +77,20 @@ public class Slot : MonoBehaviour
                 _inventory.ClickItem(_item, false);
             }
         }
-        else if(GameStateController._currentState == GameState.Chest)
+        else if (GameStateController._currentState == GameState.Chest)
         {
-            // chamar metodo no storage pra adicionar item no storage
-
             if (!isStorage)
             {
                 _storage.PassItemToStorage(_item);
                 _inventory.RemoveItem(_item);
-
-
-                print("ADICIONA ITEM");
             }
             else
             {
-                _storage.RemoveItem(_item);
                 _inventory.TakeItem(_item);
+                _storage.RemoveItem(_item);
             }
 
-            
+
         }
     }
 

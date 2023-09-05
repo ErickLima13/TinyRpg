@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Storage : InventoryBase
 {
     // [Header("Storage")]
@@ -24,7 +21,7 @@ public class Storage : InventoryBase
             if (s.HasItem())
             {
                 s.EnableDisableRemoveButton(!value);
-            } 
+            }
         }
     }
 
@@ -34,13 +31,13 @@ public class Storage : InventoryBase
 
         if (HasSlot())
         {
-            TakeItem(temp);    
+            TakeItem(temp);
         }
 
         if (temp.usable)
         {
             AddItemUsable(temp);
-        } 
+        }
     }
 
 

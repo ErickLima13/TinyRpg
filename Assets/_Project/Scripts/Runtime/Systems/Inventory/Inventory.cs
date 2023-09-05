@@ -73,14 +73,6 @@ public class Inventory : InventoryBase
         }
     }
 
-    public void RemoveQuantityItems(int quantity, ItemData item)
-    {
-        for (int i = quantity; i > 0; i--)
-        {
-            RemoveItem(item);
-        }
-    }
-
     public bool HasQuantityItems(ItemData item, int quantity)
     {
         return HasItem(item) && quantityOfItems[item.id] >= quantity;
@@ -169,7 +161,7 @@ public class Inventory : InventoryBase
             temp.UseItem();
         }
 
-        
+
 
     }
 

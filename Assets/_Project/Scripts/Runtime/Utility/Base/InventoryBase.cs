@@ -65,23 +65,21 @@ public class InventoryBase : MonoBehaviour
 
     public void RemoveItem(ItemData item)
     {
-        temp = null;
+        temp = item;
 
         if (item.onlySlot)
         {
             quantityOfItems[item.id] -= item.quantity;
+            itemsUsable.Remove(item);
 
             if (quantityOfItems[item.id] <= 0)
             {
                 items.Remove(item);
-                itemsUsable.Remove(temp);
-
-                print("removi");
             }
         }
         else
         {
-            items.Remove(item);
+            items.Remove(temp);
         }
 
         UpdateInventory();
@@ -95,5 +93,13 @@ public class InventoryBase : MonoBehaviour
     public bool HasItem(ItemData item)
     {
         return items.Contains(item);
+    }
+
+    public void RemoveQuantityItems(int quantity, ItemData item)
+    {
+        for (int i = quantity; i > 0; i--)
+        {
+            RemoveItem(item);
+        }
     }
 }
